@@ -90,8 +90,8 @@ whitespace = '\t\n\x0b\x0c\r '
 		#'23rt'
 @str.swapcase() #大小写反转
 
-@str.startswith(obj,len=0,end=len(str)) #检查字符串是否以obj开头
-@str.endswith(obj,len=0,end=len(str)) #检查字符串是否以obj结尾
+@str.startswith(obj,beg=0,end=len(str)) #检查字符串是否以obj开头
+@str.endswith(obj,beg=0,end=len(str)) #检查字符串是否以obj结尾
 
 @str.istitle() #检查各单词是否以大写开头且其余部分都为小写
 		#>>> ss = 'Stt8Trr'
