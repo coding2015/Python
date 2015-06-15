@@ -1,0 +1,192 @@
+#!/usr/bin/python
+
+#记录Python编程错误
+#错误：！Error
+
+#----------------------'Error/Exception: Types'-----------------------------
+@IndexError:序列索引值超出序列范围
+	# IndexError: string index out of range
+@KeyboardInterrupt: ctrl+c
+@EOFError: ctrl+d
+@NameError: 名字(变量名/函数名/模块名)未定义，或模块未导入
+@TypeError: 直接调用模块名，语法错误
+@ImportError: 模块导入错误
+	# ImportError: No module named Textwrap
+@SyntaxError: 编码错误，语法错误
+@UnboundLocalError: 全局变脸与局部变量冲突
+
+#------------------------'Error Collections'---------------------------------
+@Error：‘print’ 写成 ‘printf’;
+	在命令行模式下，由于没有语法高亮，所以敲入时往往注意不到；
+	‘printf()’ 比 ‘printf xxx’，出错时提示的信息更明确 
+	#>>> printf test % chinese
+	#  File "<stdin>", line 1
+    #	printf test % chinese
+    #          ^
+	#SyntaxError: invalid syntax
+
+	#>>> printf(test % chinese)
+	#Traceback (most recent call last):
+  	#	File "<stdin>", line 1, in <module>
+	#NameError: name 'printf' is not defined
+
+@Error：‘print’字符串用中文引号包含，导致print无法解析其为字符串，语法错误
+	中文引号不会引起语法高亮，“中文引号”
+	英文(ASCII)引号会出现语法高亮，"英文引号"
+	由于两种引号小且神似，在命令行模式不易辨别，故容易出错，且会误判
+	故在来回切换双语言时需格外小心,在支持语法高亮的方式下注意颜色变化
+	如何避免：
+		尽量使用单一语言输入法
+		尽量在支持高度语法高亮(vim)编辑器里写脚本
+	#>>> print "chinese:%r" % “中国人”
+	#  File "<stdin>", line 1
+	#    print "chinese:%r" % “中国人”
+	#                         ^
+	#SyntaxError: invalid syntax
+
+@Error: 敲打错误，%s写成$s
+	#formatter="%s has %s \n$s has %s \n%s has %s." % ( 
+    #forfirst,first_has,
+    #forsecond,second_has,
+    #forthird,third_has)
+	#for
+	#forTraceback (most recent call last):
+	#for 	File "argument.py", line 15, in <module>
+    #forformatter="%s has %s \n$s has %s \n%s has %s." % (first,first_has,second,second_has,third,third_has)
+	#forTypeError: not all arguments converted during string formatting
+
+@Error：脚本包含非英语的其他语言，无法解析
+	#SyntaxError: Non-ASCII character '\xe8' in file reading_files.py on line 5, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+	解决：脚本开头加 "#coding:utf-8"
+
+@Error：英语单词简写包含的单引号与字符串单引号冲突
+   #>>> print >> sys.stdout,'Fetal error: Don't '
+   #  File "<stdin>", line 1
+   #	print >> sys.stdout,'Fetal error: Don't '
+   #										  ^
+   #SyntaxError: invalid syntax
+   解决：单词简写单引号前加转义字符‘\’: '...don\'t...'
+		 或：字符串用双引号："...don't..."
+
+@Error：插入算法每次拿后一个数与前一个数比较
+	按算法思想：应为要插入的数与它前面的每一个数比较
+		#Error:
+			#temp = a[i]; j = i
+			while a[j]>a[j-1] and j>0 :
+			#	a[j] = a[j-1]; j--
+		#Correct:
+			#temp = a[i]; j = i
+			while temp>a[j-1] and j>0 :
+			#	a[j] = a[j-1]; j = j-1
+			#if j != i :
+			#	a[j] = temp
+
+@Error：代码块(函数，if，while,for,etc)前忘':'
+
+@Error：raw_input() 输入数字时忘记强转换
+	raw_input() 返回的是字符串类型，要得到其他类型需对其强转换
+	#Error:
+		n = raw_input('enter a number> ')
+	#Correct:
+		n = int(raw_input('enter a number> '))
+
+@Error:多重括号没有配对完整
+  	#File "recursion.py", line 98
+    #	y = int(raw_input('enter an integer> ')	
+    #	^
+  	#SyntaxError: invalid syntax
+
+@Error:括号为中文格式
+	#Taceback (most recent call last):
+	#  File "recursion.py", line 119, in <module>
+	#    main()
+	#  File "recursion.py", line 97, in main
+	#    x = int(raw_input('enter an integer> '))
+	#ValueError: invalid literal for int() with base 10: '24 8'
+	解决：将此处的括号重新以英文输入法输入
+
+
+@Error:错误在附近
+	  #File "branches.py", line 31
+      #	elif next == "taunt bear" and  not bear_moved:
+      # 	^
+	  #	SyntaxError: invalid syntax
+	真在的错误在于该句上一行函数调用少了左括号
+
+
+@Error:用is判断真假
+		#A is True //wrong,该表达式意为A是否为‘True’的引用
+		is :判断两个值或变量是否同属一个对象（即id是否相等）
+		'A is B' 等价于 'id(A) == id(B)' 
+
+@Error:与bool值比较真假
+		#>>>l = [12]
+		#>>>l == True
+		#False
+		原因：bool值为0/1，故'=='实际在与1比较
+
+@Error:存在自定义的脚本文件名与将调用的系统模块名冲突
+	#  File "random.py", line 10, in RandomList
+    #	for i in range(random.randint(2,100)):
+	#AttributeError: 'module' object has no attribute 'randint'
+	$ pydoc, import, 等都是先从当前脚本所在目录开始查找模块信息
+	如果存在与系统模块名相同的自定义脚本，就会首先调用该脚本
+
+@Error:方法/函数'()'写成'[]'
+	# print 'removed [',`queue.pop[0]`,']'
+	#TypeError: 'builtin_function_or_method' object has no attribute '__getitem__' 
+	更正：'queue.pop(0)'
+
+@Error:字符值没用引号包含
+	#	choice = q			
+	#NameError: global name 'q' is not defined
+	更正："choice = 'q'"
+
+@Error:直接调用模块名
+	#>>> a = array('b',[])
+	#Traceback (most recent call last):
+	#  File "<stdin>", line 1, in <module>
+	#TypeError: 'module' object is not callable
+	更正："a = array.array('b'),[]"
+
+@Error:调用模块前未导入模块
+	# array 模块未导入：
+	#  File "<stdin>", line 1, in <module>
+	#NameError: name 'array' is not defined
+	更正：'import array'
+
+@Error:用for的元素作为序列的索引
+	 #for beg in s: 
+     #   if s[beg] not in whiteSpaces:
+	 #TypeError: string indices must be integers, not str
+     更正：
+		for beg in range(len(s)):
+		or:
+		for beg e in enumerate(s):
+
+@Error:序列切片操作用逗号
+	#s[beg,end]
+	#TypeError: string indices must be integers, not tuple
+	更正：'s[beg:end]'
+
+@Error:关闭sys.stdout/sys.stderr后无法显示结果
+	#>>> dir()
+	#Traceback (most recent call last):
+  	#File "<stdin>", line 1, in <module>
+	#ValueError: I/O operation on closed file
+	因为将显示器输出文件给关闭了
+	标准输入输出文件已经预先被打开，通过sys模块可以访问这些文件句柄
+	不需人为关闭，一旦人为关闭后'print','input'就无法使用
+	解决：强制退出操作符模式，再重新进入
+	'？？':更好的解决方法，如何再打开
+
+@Error:全局变量与局部变量冲突
+	# moves
+	# def fun():
+	#	moves += 1
+	在局部范围对全局变量赋值前未声明，
+	导致解析器无法分清是创建局部变量还是更改全局变量的值
+	更正：赋值前声明为全局变量
+		def fun():
+			global moves
+			moves += 1

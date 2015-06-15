@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+#sequences: str, list, tuple
+
+#------------异----------------
+'访问属性'
+	@不可更改：str,tuple
+		属性操作有返回值:返回新对象
+	@可更改：list
+		属性操作无返回值，直接改变对象内容
+'复合运算符'
+	'+=','*=': list id不变,未产生新列表
+			   tuple/str id改变，产生了新的元组/字符串
+'sort()':
+	只有 list 有 sort() 属性 
+
+#------------同-----------------
+@相互性：可以相互转换
+	str(list)，str(tuple)
+	list(str),list(tuple)
+	tuple(str),tuple(list)
+@共同属性
+	@访问模式：顺序访问
+
+@共同操作/方法
+	@in：是否在
+	@[::]: 索引/切片
+		切片起始/结束为空
+		[:] 或 [None:None], 返回整个obj
+	@index(obj,i=0,j=len(seq)) #查找obj元素，并返回第一个obj元素的索引值
+

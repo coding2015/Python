@@ -1,0 +1,105 @@
+#!/usr/bin/python
+'dict'
+
+{key:value, key2:value2, ...}
+'key':
+	不允许更改，必须可哈希：
+		可通过BIF: hash(obj)来判断obj是否可做键值
+	所有不可变的类型都可哈希:
+		None,数字类型,字符串，不含可变元素的元组
+	哈希值相等obj对应的键相同：
+		因为 hash(1) == hash(1.0) == 1
+		故 d[1] 与 d[1.0] 为同一个元素
+    键唯一
+'？？':
+	format: 
+		key=None时 如何格式化‘%(?)’ 
+		value=list,tuple,dict, 如何格式化‘%(key)?’	
+	Template:
+		st = string.Template('xxx ${key1},${key2}')
+		st.substitute(key1=value1, key2=value2)
+		st.safe_substitute(key1=value)
+
+'''
+操作符：
+	[]: 键查找(key-lookup)
+	in/not in： 成员关系
+不支持:
+	*：重复操作
+	+：连接操作	
+'''
+#----------------method-------------------
+# 创建字典
+@ d = dic
+	'''
+	赋值法，将一个字典赋值各一个变量
+	d = {key1:val1, key2:val2, ... } 
+		若存在相同的key,则合并为唯一的key, 值取较后面的key值
+	'''
+@ dict(): 工厂法
+	d = dict(key1=value1, key2=value2, key3=value3, ...)
+	d = dict(seq(pairs))
+@ dict.fromkeys(seq/dic,v=None) 
+	'''
+	创建字典：以seq元素或抽取dic的键为新字典的键
+			并初始化各键键值为v,v默认为None
+	'''
+@ d.copy() #返回d的浅拷贝，推荐该法，比d1=d2 或d1=dict(d2)效率更高
+
+# 查看
+@ d[key] 
+	'''
+	索引法查看某个元素
+	若key不存在，报错：KeyError
+	'''
+@ d.get(key,default=None) 
+	'''
+	如果key存在返回d[key],否则返回default
+	比[]灵活，且不会报错
+	'''
+@ d.keys() #返回字典的键列表
+@ d.values() #返回字典的键值列表
+@ d.items()	#返回列表：每个元素为一元组，每一元组有一个键值对组成
+@ d.iteritems() 
+@ d.iterkeys()
+@ d.itervalues()
+	'''
+	iterxxx() 返回迭代器
+	当数据集很大时，iterxxx比其对应的xxx节省内存
+	eg: for key in d.iterkeys():
+			print key
+	'''  	
+@ for key in dict: dict[key] #迭代器法遍历字典
+
+
+'查看字典是否有键值'
+@ dict.has_key(key)	#未来版本将弃用
+@ key in/not in dict	#推荐该法，!不能查看是否有键值
+
+
+# 添加/修改元素
+@ d[key] = value	#添加键-值对，或修改键值
+@ d.setdefault(key,default=None)
+	'''
+	创建key，并返回d[key]
+	如果key存在，返回原d[key]
+	如果key不存在，设置d[key]=defualt, 并返回d[key]
+	比'd[key]=value'安全，不用担心已存在的key被覆盖
+	'''
+@ d.update(d2)  #将d2合并到d中，覆盖同key的值
+
+# 删除
+@ del d[key] #删除一个键值对
+@ d.pop(key[,default]) 
+	'''
+	如果key存在,就删除并返回d[key]
+	否则返回default, 若default未赋值，则报错：KeyError
+	'''
+@ d.popitem()#随机？删除一个键值对，若字典为空则报错
+@ d.clear() 	#清空整个列表
+@ del d		#删除整个字典对象
+
+
+
+
+

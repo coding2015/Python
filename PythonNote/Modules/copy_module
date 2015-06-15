@@ -1,0 +1,6 @@
+#!/usr/bin/python
+
+'module:copy'
+
+@ x = copy.copy(obj) #shallow copy
+@ x = copy.deepcopy(obj) #deep copy

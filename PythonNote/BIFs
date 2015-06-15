@@ -1,0 +1,106 @@
+#!/usr/bin/python
+#BIF:build-in functions
+
+@ com()
+"com() or '<,<=,>,>=,==' 比较规律"
+"同一类型比较":
+	直接比较两者的值
+	列表、元组、字符串等序列类型按元素逐个比较
+		元素个数不等的两同类序列，若长的序列包含短序列，则长序列较大
+"不同类型间比较"
+	1.若有一方为数字，则另一方较大
+	2.若两方都不为数字，则按其类型名的字母顺序比较:
+			'dict'<'list'<'str'<'tuple'
+			#>>> 12345<{}<[]<''<()
+			#True
+"in all":
+	None < number < 'dict' < 'list' < 'str' < 'tuple'
+
+
+@ repr(xxx) or `xxx`(反引号)
+'''同shell的repr：调用xxx
+   xxx：函数，命令，变量'''
+
+@ divmod(x,y) 
+'''除法 返回元组(quotient,remainder) ((x-x%y)/y,x%y)
+'''
+	
+@ hash(obj)
+'''判断obj是否可哈希
+   可哈希则返回一个整数，否则报错：TypeError
+   不可变类型都可哈希：不含可变元素的元组，字符串，数字，None'''
+
+@ len(obj) 
+'返回序列或字典的元素个数'
+
+@ max(sep), max(obj1, obj2, ...)
+'返回一个序列的最大项，或返回多个参数的最大项'
+
+@ min(sep),max(obj1, obj2, ...)
+'返回最小项'
+
+@ any(iterable) -> bool
+'''
+iterable所有元素都为真时返回 True
+iterable为空时返回 False
+'''
+
+@ all(iterable) -> bool
+'''
+iterable所有元素都为真时返回 True
+iterable为空时返回 True
+'''
+
+@ enumerate(iterable-obj, count=0)
+'''
+返回一个枚举对象，对象元素为元组-数值对(序号-元素值)，序号从count开始计数
+若obj为字典，则数值对的值为字典元素的键
+'''
+	#>>> len(l)
+	#3
+	#>>> for e in enumerate(l,3):
+	#...     e
+	#... 
+	#(3, None)
+	#(4, 1.0)
+	#(5, 'e')
+
+@ range()
+	range(end) #start=0, step=1
+	range(start,end,step=1) 
+'返回整数列表，由start～（stop-1）,间隔为step的整数组成'
+'分2种语法,不能通过参数名的方式赋值'
+	'error: range(end=10,step=2)'
+	#>>> range(10)
+	#[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	#>>> range(10,0,-1)
+	#[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+@ xrange()
+'同range().但返回的是整数迭代对象，故性能优于range()'
+
+@ reduce(function,seq)
+'''调用function从左至右依次计算序列seq元素的值
+	so as to reduce the sequence to a single value'''
+	#>>> import operator
+	#>>> reduce(operator.add, (1,2))
+	#3
+
+@ reserved(sequence) 
+"返回一个倒序序列的迭代器"
+
+@ sorted(iterable, cmp=None, key=None, reverse=False)
+'''返回一个排好序的列表，默认升序
+		eg: sorted(l. reverse=True) //逆序排列列表
+   iterable: 若为字典，则返回的是字典键的排序列表
+'''
+
+@ zip(seq1,seq2,seq3,...)
+'''
+	返回一个列表：
+		列表元素为各序列同一索引元素/键构成的元组
+		列表长度为最短序列长度
+	eg:
+		>>> zip((1,2),[3,4,5,6,7],{11:22,12:33,13:44})
+		[(1, 3, 11), (2, 4, 12)]
+'''

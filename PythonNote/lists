@@ -1,0 +1,53 @@
+#!/usr/bin/python
+
+#list
+#-----------------操作---------------------
+@ in, not in #成员关系操作符
+@ '+'	#合并序列产生新序列
+@ '*'	#连续重复序列
+@ '+=','*='	#复合运算，左边序列id不变，未产生新序列？
+
+#-----------------方法----------------------
+#运算
+@reduce(operator,seq) #实现列表元素的汇总运算
+
+#-----------------属性----------------------
+# 查找
+@[][] : 层层索引操作，子层也是序列对象时
+	#>>> l
+	#[23, 44, 'rtrs23']
+	#>>> l[2][1]
+	#'t'
+@list.count(obj) #计算值为obj的元素个数
+@list.index(obj,i=0,j=len(list)) #查找值为obj的元素，
+								#返回第一个obj元素索引值
+								#否则找不到返回ValueError
+
+# 增加
+@list.insert(index,obj) #在index之前添加obj元素
+						#若index>len(list)-1,则在列表末尾添加
+						#若index<-len(list),则在列表首前添加
+@list.append(obj)	#在列表末尾添加obj元素
+@list.expend(seq)	#在列表后添加另一个序列
+
+# 修改
+@list.[index] = new
+
+# 排序
+@list.reverse()	#翻转序列
+@list.sort(cmp=None, key=None, reverse=False) # reverse:是否倒序，默认升序 
+
+# 删除元素：
+@del list[i] 
+@list.remove(value)	#删除左数第一个出现的value值
+	#>>> ll
+	#[2, 3, 4, 5, 3, 9]
+	#>>> ll.remove(3)
+	#>>> ll
+	#[2, 4, 5, 3, 9]
+
+@list.pop(index=-1) #删除索引元素，并返回被删元素值，默认删除最后一个元素
+# 删除列表对象
+@del list
+
+

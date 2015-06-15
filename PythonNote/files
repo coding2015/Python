@@ -1,0 +1,90 @@
+#!/usr/bin/python
+
+'file'
+
+@'??':
+	'b':posix兼容系统忽略 unix/linux系统视所有文件为二进制文件
+	'U'：universal newline mode
+		不同平台行结束符号不同: '?'如何兼容
+			通过os模块兼容,
+			相关os模块的属性：linesep, sep, pathsep, curdir, pardir
+			调用这些属性，值会随平台的不同而不同
+				eg:linux下为'\n' (可查询属性'os.linesep')
+		只用于读取文本文件，没有对应的处理文件的输出方法
+	'行结束符，文件结束符'
+	'tty文件/设备'
+#---------------method-------------------
+@ open(filename, mode='r', bufferring=-1)
+	'''
+	filename: 相对路径或绝对路径
+	mode: 'r','w','a','rb'，'rU','r+',...
+		‘w’:重写文件，原先数据被删除，慎！
+	buffering:
+		负值：使用系统默认缓冲机制
+		0：不缓冲
+		1：缓冲一行
+		>1: 缓冲大小
+	'''
+@ file() == open() #推荐用open()来读写文件
+
+@ f.close() #关闭文件后在对f进行操作，报错：ValueError
+
+#----输入-----
+@f.read(size=-1) 
+	'size:负值，读到文件的EOF处'
+
+@f.readline(size=-1)
+	'''	
+	size:
+		 负数，读到行末尾
+		 正数：>=行大小时，读到该行末尾，否则返回不完整行
+	'''
+@f.readlines(size=-1)
+	'''
+	返回：以文件各行为元素的列表
+	size：返回>=size的缓冲区大小的列表
+	'''
+@f.xreadlines()
+	'''
+	读取文件的一块，返回文件对象
+	'''
+
+#----输出-----
+@f.write(str)
+	'''
+	写入字符串
+	由于缓冲，写过之后硬盘上的数据需要在flush()或close()之后才能看到
+	'''
+@f.writelines(str/str-seq)
+	'''
+	写入字符串，或字符串列表/元组
+	不会自动加入行结束符号
+	'''
+
+#----位置-----
+@f.tell() 
+	'返回文件当前位置'
+@f.seek(offset, whence=0)
+	'''
+	从whence位置偏移offset个字节，默认从文件开头偏移
+	whence:
+		os.SEEK_SET/0: 文件开头
+		os.SEEK_END/2: 文件结尾
+		os.SEEK_CUR/1: 文件当前
+	'''
+@f.truncate(size=tell())
+	'写或追加模式下，截取从文件开头计起的size大小内容并重写入文件'
+	'默认截取开头到当前位置的内容'
+
+#----文件迭代-----
+'读写文件更为高效'
+@f.next()
+	'返回下一行'
+@for loop
+	'''
+	文件迭代(Python 2.3 引入)
+		for eachLine in file:
+			xxx
+	'''
+
+

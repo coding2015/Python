@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+'notebook for os modules'
+
+
+# os_module methods
+@ getcwd()
+@ mkdir()
+@ chdir(path)
+@ listdir(dirpath) #返回列表：所给目录的所有条目
+@ rename(old,new) #重命名文件/目录
+
+
+# os.path_module methods
+@
+
+

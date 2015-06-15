@@ -1,0 +1,30 @@
+#!/usr/bin/python
+#recording questions for future solving
+#FAQ
+#
+
+
+@Q:for eachline in fp，无法逐行读取文件，输出都为空
+	且执行 for 之前可以 read() 
+	执行 for 之后 read() 为空
+@A:原因执行第一个read()后，文件指针已经指向文件尾，之后再读也内容可读了
+
+
+@Q:字符串编码转换 s.strip('中文'）
+
+@Q:求字符的ASCII值
+
+@Q:类型'str'与'string'
+
+@Q:type()
+	>>> type(int)
+	<type 'type'>
+	>>> type(1)
+	<type 'int'>
+
+@Q:import 重复导入同一模块是怎样的过程
+
+@Q:while,if,for 中创建的变量的作用域
+
+@Q:int 既是类型又是类
+

@@ -1,0 +1,13 @@
+#!/usr/bin/python
+'''random moudle'''
+
+random模块
+非内建，调用时需导入
+import random
+
+
+#----------------------methods-----------------------
+@random.choice(seq) #从一非空序列中随机抽取一个元素
+@random.random() #在[0.0,1.0)间抽取一个随机浮点数
+@random.randint(a,b) #在[a,b]间抽取一个随机整数,包括a,b
+@random.randrange(a,b,step=1) #在[a,b[,step]]间抽取一个随机整数，不包括b

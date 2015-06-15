@@ -1,0 +1,246 @@
+#!/usr/bin/python
+#Description
+#	Linux(CentOS-7.1)-Shell下
+#	Python操作技巧和一些细节知识点
+#	@Point
+#History
+#2015-05-30	megan	first-realse
+#
+
+@Point：字符串结合/组合+，%
+    #‘+’——线性组合字符串
+    #‘%’——格式定制字符串
+
+@Point：'%'：
+    要插入的变量要紧跟在对应字符串后面，尤其是在多字符串组合中
+        #num = 9 
+        #decorate = '*'*5 + 'ex%d'+ '*'*5 % num
+            #TypeError: not all arguments converted during string formatting
+        #decorate = '*'*5 + 'ex%d' % num + '*'*5
+    字符串取%变量量的值为此前最近的值，此后%变量值改变了，字符串对应变量不变
+		原因：因为变量引用对象变了
+        #num = 0 
+        #title = '*'*5 + 'ex%d' % num + '*'*5
+        #num = 8 
+        #print title
+            #输出:*****ex0*****
+
+@Point:'%r'：
+    输出原始数据
+        eg:"%r % 中文" 输出的是汉字编码
+            #>>> print "chinese:%r" % "中国人"
+            #chinese:'\xe4\xb8\xad\xe5\x9b\xbd\xe4\xba\xba'
+            用"%s % 中文"可正确输出中文
+            #>>> print "chinese:%s" % "中国人"
+        eg:不对转义符后面的信息进行转换
+            "%r % 'str\nstr'" #输出不会换行，仍然是'\n'，
+
+@Point:运行脚本时输入参数
+    from sys import argv #导入命令行参数
+    va1,va2,...=agrv #解包参数给各个变量
+    #类似C: main(int argc,char** argv)
+
+@Point：强制类型转换
+    Type(var/expre)
+    或：(Type)(var/expre)
+    要点：Type两边可用可不用括号包含，但后面的值必须用括号包含
+        #!与C不同，C：(Type)[(]var/expre[)]
+            #C:Type两边必须用括号包起来
+            #var/expre看情况可用可不用括号包含
+                #eg:C强制转换函数返回值：(Type)Func()
+    eg:函数返回值转换需要将整个函数头包起来
+        age = int(raw_input('your age:'))
+        #>>> age = (int)raw_input('your age:')
+        #  File "<stdin>", line 1
+        #    age = (int)raw_input('your age:')
+        #                       ^
+        #SyntaxError: invalid syntax
+	
+@Point:类型
+	@bool:[True,False] == [1,0]
+		>>>'%s' % Ture
+		True
+		>>>'%d' % Ture
+		1
+	@random (moudle)
+		@choice(self, seq)
+            Choose a random element from a non-empty sequence.
+		@randint(self, a, b)
+            Return random integer in range [a, b], including both end points.
+		@randrange(self,start,stop,step=1）
+			Choose a random item from range(start, stop[, step]).
+
+@Point:运算符
+	@数值运算符 '+','-','*','/','%','**'
+		#指数运算符'**', paw()
+		字符串和数字间只支持*：连续重复数字遍字符串，'str*num' == 'num*str'
+			数字*num：乘法运算
+			字符串*num：连续输入num遍字符串
+				#！print ".%d.." % numvariable*num
+				#'%'与'*'优先级相同，按从左到右结合，先%结合为一个字符串，再乘于num
+				#故该语句为：重复输出num遍含有变量值的字符串
+				#故若要实现变量的乘法，应在乘号两边加括号:% (numvariable*num)
+			#>>> print "Doubling your age:%d\n" % age*2
+			#Doubling your age:12
+			#Doubling your age:12
+			#
+			#>>> print "Doubling your age:%d\n" % (age*2)
+			#Doubling your age:24
+
+	@比较运算符 '>','>=','<','<=','==','!='或'<>'
+		>'!='C风格
+		>'<>'ABC/Pascal风格，逐渐淘汰中
+		>数值与bool类型的比较，实际是在与数值1，0比较
+			  #>>> num == Ture
+			  #False
+	@身份操作符 
+		>is, is not: 判断两个引用 是否为同一对象
+			compare to '==': 比较两数值是否相等
+			!Error 容易用该操作符号来判断真假 
+				#A is True //wrong,该表达式意为A是否为‘True’的引用
+		>id(obj)
+			
+	@逻辑运算符 'and','or','not'
+		#与C比较，C:‘&&’，‘||’，‘！’
+	@位运算符 '&','|','^','<<','>>'
+		#位与，位或，异或，左移，右移
+		'~'取反:
+			正数取反运算得到是负数
+				~(0000 0010) = 1111 1110 (负数）
+				因为负数以补码的方式存储，故该补码(负数)值为：
+					1111 1110 ——> 1000 0001 + 1 ——>1000 0010 = -2
+		'>>‘,’>>'移位：
+			只支持整数移位
+	@运算符优先级
+		#比较>逻辑
+
+	@内建函数
+		>coerce(x,y):强制转换，将两数转换同一类型，以元组方式返回
+		>abs(n):返回n的绝对值
+		>round(num,precise=0).四舍五入
+			precise
+				默认0，表精度为整数（仍为浮点数类型xxx.0)
+				>0, 精度为小数点左数位数（小数位数）
+				<0, 精度为小数点右边位数（整数位数）
+		>int(n), math.floor(n),round(n)
+			int(n):去小数部分
+					n>0时，int(n)<=n; 
+					n<0时，int(n)>=n
+			floor(n):取小于n的最大整数（浮点数类型）
+					无论n何值,floor(n)<=n
+			round(n):四舍五入，取最接近n的整数（浮点数类型）
+					n>0时，四舍<n,五入>n
+					n<0时，四舍>n.五入<n
+		>pow(num,指数)， == num**指数
+		>进制转换
+			hex(整数):转化为十六进制
+			oct(整数):转化为八进制
+		>ASCII转换
+			ord(character):将字符转换为整数值
+			chr(integer):将整数转换为字符（整数范围[0,255])
+						或：'%c' % integer
+				
+@Point:Python不支持
+	@switch-case
+	@do 循环
+	@自增'++'、自减运算符'--'
+		#数值的前'++'相当于'+(+)',前'--'相当于'-(-)'
+		#其他情况要么报'TypeError',要么报‘SyntaxError’
+	@赋值表达式作右值
+		#x=(y=z)，C支持，但python则视为语法错误
+
+@Point;模块（脚本/类/函数）
+	@内建属性：
+		'__doc__':模块开头未被赋值的字符串变量会自动被赋值给该属性
+		'__name__':脚本运行时自动赋予'__main__'给该属性
+
+@Point:list,tuple,dict
+	list: ['xx',323,....],列表,
+		#[a:b]从索引a开始到索引b之前的子元素列表
+		初始化：
+			1、a = [0,0,0,0,0,0]
+			2、a = [0]; a = a*10
+			3、a = list(range(10))
+			4、a = range(10)
+		索引:'[]'，切片'[:]'
+			从首元素开始数：'[0],[1],[2], ... ,[num-1] '
+			从尾元素倒数：'[-1],[-2],[-3], ... ,[-num]'
+		访问：
+			支持边界内元素查看及修改
+			不支持越界访问 #python对此做严格语法检查，C对此不做要求故C中较易发生内存污染
+				可通过'obj.append(e)'增加元素
+	tuple: (45,'xx',...), 元组
+		索引：同 list
+		访问：
+			支持边界内元素查看
+			不支持边界内元素修改
+	dict:['xxx':'xxx',num:num,...].字典，相当于C++的map
+
+	@BIFs:
+		enumerate(iter):枚举，返回iter中各个元素的索引和值
+		#	>>> t=(23,'ed')
+		#	>>> e = enumerate(t)
+		#	>>> for i,ch in e:
+		#	...     i,ch
+		#	... 
+		#	(0, 23)
+		#	(1, 'ed')	
+
+@string
+	@strip() 默认去掉末尾所有空白字符,' ','\t','\n'
+            >>> s
+            'ssf\t\t\t\t\n\n\n'
+            >>> '%r' % s 
+            "'ssf\\t\\t\\t\\t\\n\\n\\n'"
+            >>> '%r' % s.strip() #默认去掉所有空白符
+            "'ssf'"
+            >>> '%r' % s.strip('\n') #只去掉换行符
+            "'ssf\\t\\t\\t\\t'"
+        若给定字符，则去掉字符串末尾的所有该字符
+            #>>> 'hellopp'.strip('p')
+            #'hello'
+	@split() 默认以空白字符分割,返回列表
+			#>>>'23:24:56'.split(':')
+			#['23', '24', '56']	
+
+
+@Point:引用
+	赋值或传参实质是一种增加对象引用的行为
+			x = 3.14 #浮点数对象被创建，并产生一个引用x
+			y = x	#浮点数对象增加一个引用y
+			y = 2	#浮点数对象减少一个引用，整数对象被创建并产生一个引用y
+		整数或浮点数对象的值不可改，每一个值带代表一个唯一的对象；
+		而列表、元组、字典的对象的值可改:
+			L = [1,2] #列表对象被创建，并产生一个引用L
+			LC = L	#增加一个引用LC
+			LC.append() #通过引用改变对象的值
+	引用计数：
+		判断是否为同一引用：
+			>>> a is b
+			>>>id(a) == id(b)
+	
+ @Point:复合语句或子代码块靠缩进实现
+	if 执行体(单行或多行)都需缩进
+	for 执行体(单行或多行)都需缩进
+	while 执行体(单行或多行)都需缩进
+	#C：复合语句用花括号'{}'包含
+
+@Point:range(),enumerate()
+	range(,):整数范围
+	enumerate(list/dict)
+
+@Point:I/O
+	@print()
+		形式：
+			print "xxx"
+			print string_variable
+			print "...%F...%F.." % (xxx, xxx, ..,)
+			print xxx, xxx, xxx, ...  #输出时字符串间自动加空格 
+			print xxx+xxx+xxx+...
+	@raw_input() 
+		输入的值一律被视为字符串
+		需要强转换来得到其他类型
+		a = int(raw_input('num: '))
+	@文件
+		要点：文件指针当前位置
+			  读/写文件会改变文件当前位置

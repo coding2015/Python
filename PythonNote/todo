@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+@待解："find ~/Python/ -name '*.py'"不能找到所有的.py文件
+
+@待解:在~/Python/目录下运行help 报错
+	#>>> help('prin')
+	#There are 10 types of people.
+	#Thoese who know binary and those who don't.
+	#I said 'There are 10 types of people.'.
+	#numbers:1,2
+	#[%r]I also said:"Thoese who know binary and those who don't.".
+	#Isn't that joke so funny?! False
+	#This is the left side of...a string with a right side.
+	#Traceback (most recent call last):
+	#  File "<stdin>", line 1, in <module>
+	#  File "/usr/lib64/python2.7/site.py", line 458, in __call__
+	#    import pydoc
+	#  File "/usr/lib64/python2.7/pydoc.py", line 54, in <module>
+	#    from string import expandtabs, find, join, lower, split, strip, rfind, rstrip
+	#ImportError: cannot import name expandtabs
+	#>>> help("print")
+	#Traceback (most recent call last):
+	#  File "<stdin>", line 1, in <module>
+	#  File "/usr/lib64/python2.7/site.py", line 458, in __call__
+	#    import pydoc
+	#  File "/usr/lib64/python2.7/pydoc.py", line 54, in <module>
+	#    from string import expandtabs, find, join, lower, split, strip, rfind, rstrip
+	#ImportError: cannot import name expandtabs
+	#

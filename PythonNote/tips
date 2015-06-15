@@ -1,0 +1,50 @@
+#!/usr/bin/python
+# some tips or tools to make efficient
+#
+
+@Tips:重复显示上一个命令执行的结果
+	>>>_
+
+@Tips:python命令行模式下清屏
+    快捷键：ctrl+l (^l)
+    或：>>>os.system('clear')
+
+@Tips:引用未来python版本标准
+    from __future__ import xxx 
+    #>>> from __future__ import division
+    #>>> 1/2
+    #0.5
+    
+@Tips: 将一长行分行写
+	@ ‘\’ 
+    @闭合操作符；'()','[]','{}'
+    @三引号：'''xxx''',"""xxx"""
+   
+@Tips：退出python解释器(命令行模式) 
+    @ctrl+z
+    @>>>quit()
+    @>>>import sys; sys.exit(num) #num为自定义退出码
+ 
+@Tips:关键字
+	查看'xxx'是否是关键字
+		>>>import keyword
+		>>>keyword.iskeyword('xxx')  
+	查看全部关键字
+		>>>keyword.kwlist
+@Tips:实例
+	查看obj是否是class/type的实例化
+	>>>isinstance(obj,str)
+
+@Tips:帮助文档
+    $ pydoc xxx 
+    或  
+    >>>help('xxx')
+    或
+    >>>print module.__doc__
+
+@Tips:查看容器个数
+	len(obj)
+		元类型无len
+
+@Tips:$ pydoc python脚本名（不带.py）
+		可查看自定义的脚本结构

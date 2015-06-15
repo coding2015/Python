@@ -1,0 +1,118 @@
+#!/urs/bin/python
+#string 用法
+
+#----------------------------属性--------------------------
+@print s #str(s)
+@>>> s  #repr(s)
+
+'string.whitespacce 空格符号'
+whitespace = '\t\n\x0b\x0c\r '
+
+
+#字符
+@特殊字符： '\0num','\xnum','\u012c'
+@ASCII：使用一个字节表示一个字符，1个字节=8个比特位，共2^8=256种组合
+	range(256)->[0,255]->[0,2^4*2^4-1)->[0,0xFF],8个比特位
+	 'A'~'Z':65-90
+	 'a'~'z':97-122
+@Unicode:使用一个或多个字节表示一个字符，共2^(8n)种组合
+	 字符：以u开头，u'ABC',u'\u0118' #\u表示后面的数值为unicode
+	 类型：'utf-8','utf-16'，,..
+
+#字符操作
+@chr(integer) # 打印整数对应的ASCII字符,integer[0,255](range(256))
+	@ '%r'% integer 
+@unichr(integer） #打印整数对应unichar, integer范围由系统决定
+@ord(char/uchar) #将ASCII字符或unichar转化位其对应的整数值
+
+#-----------------------------方法-------------------------------
+
+# 查找
+@str.find(sub,beg=0,end=len(str)) #找到返回sub在str的索引值，找不到返回-1
+	@str.rfind(sub,beg=0，end=len(str)) #从末尾开始找
+@str.index(sub,beg=0,end=len(str)) #找到返回索引值，找不到返回ValueError
+	@str.rindex(sub,beg=0,end=len(str)) #从末尾开始找
+@str.count(sub,beg=0,end=len(str)) #查找str里有多少个sub
+
+# 替换
+@str.replace(old,new,num=str,num=str.count(old)) #num:替换个数，默认替换所有
+# 合并
+@str.join(seq) #join the elements of a seq with str
+		#>>> '*'.join(['ha','la','sa'])
+		#'ha*la*sa'
+# 分割
+@str.partition(separator) #将字符串分为三部分:(head,sep,tail)
+	@str.rpartition(seperator) #从右起分为三部分
+@str.split(sep=whitespace,num=str.count(sep)) #分割字符串，空格为默认分隔符
+		#>>> ss = 're    dd      pp oo   ee'
+		#>>> ss.split()
+		#['re', 'dd', 'pp', 'oo', 'ee']
+@str.splitlines(keepends=False) #以行分割，keepends:保留换行符号，默认不保留
+		#>>> ss
+		#'test\nlines\nsplit\ndone\n'
+		#>>> ss.splitlines(True)
+		#['test\n', 'lines\n', 'split\n', 'done\n']
+
+
+# 格式
+@str.lstrip(chars=whitespace) #截掉左起始所有char字符，默认截掉所有左空格符号
+		#>>> ss.lstrip('R') #ss='RR_343'
+		#'_343'
+@str.rstrip(chars=whitespace) #截掉右起所有char字符
+@str.strip(chars=whitespace) #截掉起始和结尾所有char字符
+		#>>> ss
+		#'  \t\n test  \t \t\n'
+		#>>> ss.strip()
+		#'test'
+@str.ljust(width,fillchar=' ') #左对齐，默认空格补齐
+		#s = 'RR_343'
+		#>>>s.ljust(10,'#')
+		#'RR_343####'
+	@str.rjust(width,fillchar=' ') #右对齐
+@str.zfill(width) #右对齐width位，空位以0填充
+		#>>> ss.zfill(10)
+		#'0000stttrr'
+@str.expandtabs(size=8) #tab字符处显示空格数
+		#>>> s
+		#'\tabc\t'
+		#>>> s.expandtabs(2)
+		#'  abc '
+@str.title() #将各单词title化
+		#>>> ss = 'stt8trr'
+		#>>> ss.title()
+		#'Stt8Trr'
+@str.capitalize() #字符串首个字符大写
+		#>>> ss = 'stt8trr'
+		#>>> ss.capitalize()
+		#'Stt8trr'
+		#>>> ss = '23rt'
+		#>>> ss.capitalize()
+		#'23rt'
+@str.swapcase() #大小写反转
+
+@str.startswith(obj,len=0,end=len(str)) #检查字符串是否以obj开头
+@str.endswith(obj,len=0,end=len(str)) #检查字符串是否以obj结尾
+
+@str.istitle() #检查各单词是否以大写开头且其余部分都为小写
+		#>>> ss = 'Stt8Trr'
+		#>>> ss.istitle()
+		#True
+
+
+@str.translate(table,delchars=‘’) #将字符串映射table进行转换（映射规则？）
+						#table: 包含256个字符，若不想指定可赋值None
+						#delchars:欲删除字符，默认为空
+		#>>> ss
+		#'stttrr'
+		#>>> ss.translate(None,'sr')
+		#'ttt'
+		#>>> ss.translate('abcd'*64,'r')
+		#'daaa'
+@str.encode(encoding='Utf-8',errors='strict')
+@uni.encode(encoding='ASCII',errors='strict')
+						#errors:'strict','ignore','replace'(以‘？’替换解析错误)
+		#>>> s
+		#u'hello\u0118\u2010'
+		#>>> s.encode('ASCII','replace')
+		#'hello??'
+

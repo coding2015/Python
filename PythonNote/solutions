@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+@E:实现字符串逐字打印
+	string = raw_input('input a string>')
+	#列表法:for 
+		for elemenet in string
+			pring element
+	#索引法:while
+		index = 0
+		while index < len(string)
+			print string[i],"(%d)" % i
+			i += 1
+	#索引法:for-range （带每个字符的位置信息）
+		for index in range(0,len(string))
+			print string[index],"[%d]" % i
+
+	#枚举法:for-enumerate （带每个字符的位置信息）
+		for index,element in enumerate(string)
+			print element,'(%d)' % index
+

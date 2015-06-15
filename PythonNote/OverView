@@ -1,0 +1,30 @@
+#!/usr/bin/python
+
+>>Methods
+1、首要的思想和方法，知道去哪找到答案
+2、问题解决途径
+		#帮助：查找函数库、用法、类等
+		#	>>>help('module/func/class/etc.')	
+3、熟能生巧，repeate，要靠反复练习，而不是做完笔记后就束之高阁
+		#熟练即效率	
+		
+
+>>语法
+;脚本文件首行交代python解析器所在路径
+	#eg:#！/usr/bin/python
+	#解析器python所在路径
+	#	linux下用 $which 查询
+	#		$ which python
+	#		/usr/bin/python
+
+;声明编码方式
+	#若脚本里出现英语外的语言，需要在文件开头声明编码方式（紧挨着解析器声明）
+		#eg:	#-*- coding:utf-8 -*-
+		#或：	#coding:utf8
+		#或：	#--coding:utf8--
+	#使其支持ASCII（英语）外其他语言
+;定义变量时必须赋初值
+;promt模式下只能单行执行（复合语句视为一行）
+
+
+
