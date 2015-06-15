@@ -36,7 +36,7 @@
 @ max(sep), max(obj1, obj2, ...)
 '返回一个序列的最大项，或返回多个参数的最大项'
 
-@ min(sep),max(obj1, obj2, ...)
+@ min(sep),min(obj1, obj2, ...)
 '返回最小项'
 
 @ any(iterable) -> bool
@@ -91,7 +91,7 @@ iterable为空时返回 True
 
 @ sorted(iterable, cmp=None, key=None, reverse=False)
 '''返回一个排好序的列表，默认升序
-		eg: sorted(l. reverse=True) //逆序排列列表
+		eg: sorted(l, reverse=True) //逆序排列列表
    iterable: 若为字典，则返回的是字典键的排序列表
 '''
 
