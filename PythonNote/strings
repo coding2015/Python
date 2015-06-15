@@ -35,7 +35,7 @@ whitespace = '\t\n\x0b\x0c\r '
 @str.count(sub,beg=0,end=len(str)) #查找str里有多少个sub
 
 # 替换
-@str.replace(old,new,num=str,num=str.count(old)) #num:替换个数，默认替换所有
+@str.replace(old,new,num=str.count(old)) #num:替换个数，默认替换所有
 # 合并
 @str.join(seq) #join the elements of a seq with str
 		#>>> '*'.join(['ha','la','sa'])
