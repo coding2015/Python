@@ -78,7 +78,11 @@
 
 
 # 添加/修改元素
-@ d[key] = value	#添加键-值对，或修改键值
+@ d[key] = value	
+	'''
+	添加键-值对，或修改键值
+	若key不存在，报错：KeyError
+	'''
 @ d.setdefault(key,default=None)
 	'''
 	创建key，并返回d[key]

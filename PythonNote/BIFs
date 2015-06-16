@@ -24,7 +24,14 @@
 @ divmod(x,y) 
 '''除法 返回元组(quotient,remainder) ((x-x%y)/y,x%y)
 '''
-	
+
+@ float(str/num) -> floating point number
+'''
+conver a string or number to floating point number if possible
+无法转换, 报错:ValueError
+参数类型错误(非str/num), 报错:TypeError
+'''	
+
 @ hash(obj)
 '''判断obj是否可哈希
    可哈希则返回一个整数，否则报错：TypeError
