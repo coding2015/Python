@@ -39,6 +39,8 @@
 @ min(sep),max(obj1, obj2, ...)
 '返回最小项'
 
+@ sum(iterable)
+
 @ any(iterable) -> bool
 '''
 iterable所有元素都为真时返回 True
@@ -50,6 +52,15 @@ iterable为空时返回 False
 iterable所有元素都为真时返回 True
 iterable为空时返回 True
 '''
+
+@ filter(function, seq1) ->seq2
+'''
+返回与seq1同类型的seq2
+seq2: 'item for item in seq1 if function(item)'
+若function = None ,则seq2: 'item for item in seq1 if item'
+'''
+	#>>> filter(None,l)
+	#[1.0, 'e', 'else', 'new', 's', 'test', 23]
 
 @ enumerate(iterable-obj, count=0)
 '''

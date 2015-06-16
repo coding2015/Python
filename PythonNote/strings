@@ -43,7 +43,11 @@ whitespace = '\t\n\x0b\x0c\r '
 # 分割
 @str.partition(separator) #将字符串分为三部分:(head,sep,tail)
 	@str.rpartition(seperator) #从右起分为三部分
-@str.split(sep=whitespace,num=str.count(sep)) #分割字符串，空格为默认分隔符
+@str.split(sep=whitespace,num=str.count(sep)) 
+'''
+返回列表，列表元素为被分割的字符串
+分割字符串，空格为默认分隔符
+'''
 		#>>> ss = 're    dd      pp oo   ee'
 		#>>> ss.split()
 		#['re', 'dd', 'pp', 'oo', 'ee']
