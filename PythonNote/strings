@@ -17,11 +17,11 @@ whitespace = '\t\n\x0b\x0c\r '
 	 'a'~'z':97-122
 @Unicode:使用一个或多个字节表示一个字符，共2^(8n)种组合
 	 字符：以u开头，u'ABC',u'\u0118' #\u表示后面的数值为unicode
-	 类型：'utf-8','utf-16'，,..
+	 类型：'utf-8','utf-6', ...
 
 #字符操作
 @chr(integer) # 打印整数对应的ASCII字符,integer[0,255](range(256))
-	@ '%r'% integer 
+	@ '%c' % integer 
 @unichr(integer） #打印整数对应unichar, integer范围由系统决定
 @ord(char/uchar) #将ASCII字符或unichar转化位其对应的整数值
 
@@ -35,7 +35,7 @@ whitespace = '\t\n\x0b\x0c\r '
 @str.count(sub,beg=0,end=len(str)) #查找str里有多少个sub
 
 # 替换
-@str.replace(old,new,num=str,num=str.count(old)) #num:替换个数，默认替换所有
+@str.replace(old,new,num=str.count(old)) #num:替换个数，默认替换所有
 # 合并
 @str.join(seq) #join the elements of a seq with str
 		#>>> '*'.join(['ha','la','sa'])
@@ -94,8 +94,8 @@ whitespace = '\t\n\x0b\x0c\r '
 		#'23rt'
 @str.swapcase() #大小写反转
 
-@str.startswith(obj,len=0,end=len(str)) #检查字符串是否以obj开头
-@str.endswith(obj,len=0,end=len(str)) #检查字符串是否以obj结尾
+@str.startswith(obj,beg=0,end=len(str)) #检查字符串是否以obj开头
+@str.endswith(obj,beg=0,end=len(str)) #检查字符串是否以obj结尾
 
 @str.istitle() #检查各单词是否以大写开头且其余部分都为小写
 		#>>> ss = 'Stt8Trr'

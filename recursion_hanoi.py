@@ -5,7 +5,7 @@ hanoi question:
 	move n plates from A seat to C seat by B seat
 	method:
 		1. move n-1 plates from A to B by C
-		2. move N plate from A to C
+		2. move the N plate from A to C
 		3. move n-1 plates from B to C by A
 	this function showed the method process by recursion
 '''

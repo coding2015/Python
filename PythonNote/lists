@@ -31,7 +31,7 @@
 @list.expend(seq)	#在列表后添加另一个序列
 
 # 修改
-@list.[index] = new
+@list[index] = new
 
 # 排序
 @list.reverse()	#翻转序列
