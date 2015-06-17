@@ -26,7 +26,7 @@ def Fibonacci(n):
 
 def main():
 	n = int(raw_input('enter a number> '))
-	print 'F(%d) = %d' % (n, Fibonacci(n))
+	print 'F(%d) = %s' % (n, Fibonacci(n))
 	print 'F[%d]:' % n ,
 	print [Fibonacci(x) for x in range(1,n+1)]
 
