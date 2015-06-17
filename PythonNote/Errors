@@ -9,12 +9,13 @@
 @KeyboardInterrupt: ctrl+c
 @EOFError: ctrl+d
 @NameError: 名字(变量名/函数名/模块名)未定义，或模块未导入
-@TypeError: 直接调用模块名，语法错误
+	@ UnboundLocalError: 未初始化的本地变量，eg:未声明全局变量就对其操作时
+@ValueErro: 类型正确，但值无效
+@TypeError: 类型不正确
 @ImportError: 模块导入错误
 	# ImportError: No module named Textwrap
 @SyntaxError: 编码错误，语法错误
 @UnboundLocalError: 全局变脸与局部变量冲突
-
 #------------------------'Error Collections'---------------------------------
 @Error：‘print’ 写成 ‘printf’;
 	在命令行模式下，由于没有语法高亮，所以敲入时往往注意不到；

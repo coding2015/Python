@@ -1,0 +1,9 @@
+#!/usr/bin/python
+
+with
+
+raise errorClass (args)
+
+assert expr, (args)
+	== if not expr raise AssertionError (args)
+

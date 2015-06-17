@@ -3,9 +3,13 @@
 #	Linux(CentOS-7.1)-Shell下
 #	Python操作技巧和一些细节知识点
 #	@Point
-#History
-#2015-05-30	megan	first-realse
-#
+
+@Point: 赋值语句不能作为表达式
+	error: x = (y=2)
+	error: if x=2
+	因为python 的赋值语句没有返回值
+		C/C++赋值语句语句有返回值，故在C/C++中合法
+	如此使得python避免了其他语言由此导致的逻辑错误
 
 @Point：字符串结合/组合+，%
     #‘+’——线性组合字符串
