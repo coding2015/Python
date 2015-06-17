@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 '''
-get all the factors of a given integer
+Exercise 8-5:
+	get all the factors of a given integer
 '''
 
 def getFactors(num):
@@ -15,7 +16,7 @@ def getFactors(num):
 #		count -= 1
 
 # for
-	for count in range(num/2,0,-1):
+	for count in range(num/2, 0, -1):
 		if num % count == 0:
 			facts.append(count)
 	

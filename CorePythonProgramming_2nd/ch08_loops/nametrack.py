@@ -8,6 +8,8 @@ Exercise 8-11:
 			inform the user to correct 
 			show the error-times
 	in the end, show the name list sorted by last name
+KeyPoint:
+	string process
 '''
 
 names = []
