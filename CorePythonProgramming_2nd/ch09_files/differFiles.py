@@ -1,8 +1,12 @@
 #!/usr/bin/python
 
 '''
-compare two files, if they are different:
-show the different line and column numbers where the first difference occurs
+Exercise 9-6:
+	compare two files, if they are different:
+	show the different line and column numbers where the first difference occurs
+Problem:
+	How to get the first different col number?
+	in case: s1 in s2
 '''
 
 def ColumnNumber(s1,s2):

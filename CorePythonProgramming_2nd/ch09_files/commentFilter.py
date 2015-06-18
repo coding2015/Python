@@ -1,7 +1,12 @@
 #!/usr/bin/python
 
-'display all the lines of file, filtering the line beginning with "#" '
-'extra credit: strip out comments begin after the first character '
+'''
+Exercise 9-1:
+	display all the lines of file, filtering the line beginning with "#" 
+
+Problem:
+	extra credit: strip out comments begin after the first character 
+'''
 
 name = raw_input('enter a filename> ')
 f = open(name,'r')
