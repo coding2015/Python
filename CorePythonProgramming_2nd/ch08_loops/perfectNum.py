@@ -28,18 +28,26 @@ def isperfect(num):
 	else:
 		return False
 
+def perfectNums(scope = 1000):
+	'find the perfect numbers in range[1,scope]'
+	pers = []
+	for n in range(1, scope+1): 	#!range default start is 0
+		if isperfect(n):
+			pers.append(n) 
+	return pers
 
-def test_num():
+def test_isperfect():
 	num = int(raw_input('enter a integer: '))
 	print num, 'is perfect?',isperfect(num)
 
 
-def test_range():
+def test_perfectNums():
+	print perfectNums.__name__
+	print '\t',perfectNums.__doc__
+	print 
 	r = int(raw_input('enter the limit of integer range: '))
 	print 'perfect number in [1,%d]:' % r
-	for i in range(1, r+1): #!range default start is 0
-		if isperfect(i):
-			print i
+	print perfectNums(r)
 
 if __name__ == '__main__':
-	test_range()
+	test_perfectNums()

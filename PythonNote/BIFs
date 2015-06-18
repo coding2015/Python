@@ -1,7 +1,13 @@
 #!/usr/bin/python
 #BIF:build-in functions
 
-@ com()
+@ map(func, seq) -> list
+'''
+返回seq元素的映射列表，映射关系：func
+若func=None, 返回以seq元素组成的列表
+'''
+
+@ compare
 "com() or '<,<=,>,>=,==' 比较规律"
 "同一类型比较":
 	直接比较两者的值
@@ -40,10 +46,10 @@ conver a string or number to floating point number if possible
 @ len(obj) 
 '返回序列或字典的元素个数'
 
-@ max(sep), max(obj1, obj2, ...)
+@ max(seq), max(obj1, obj2, ...)
 '返回一个序列的最大项，或返回多个参数的最大项'
 
-@ min(sep),min(obj1, obj2, ...)
+@ min(seq),min(obj1, obj2, ...)
 '返回最小项'
 
 @ sum(iterable)
@@ -104,7 +110,7 @@ seq2: 'item for item in seq1 if function(item)'
 	#>>> reduce(operator.add, (1,2))
 	#3
 
-@ reserved(sequence) 
+@ reversed(sequence) 
 "返回一个倒序序列的迭代器"
 
 @ sorted(iterable, cmp=None, key=None, reverse=False)

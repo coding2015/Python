@@ -1,0 +1,25 @@
+#!/usr/bin/python
+'''
+a quick view for file './BIFs'
+'''
+
+map(func, seq) -> list
+compare rules
+repr(val/cmd) or `val/cmd` -> value of val/cmd
+float(str/num) -> float
+hash(obj) -> integer (if hashable)
+len(iterable) -> item numbers of iterable obj
+max(seq) -> value
+min(seq) -> value
+sum(iterable) -> value
+any(iterable) -> bool
+all(iterable) -> bool
+filter(func, seq) ->seq
+enumerate(iterable, count=0) -> enumerate-obj
+range() -> list
+xrange() -> iterator
+reduce(func, seq)
+reversed(seq) -> seq
+sorted(iterable, cmp=None, key=None, reverse=False)
+zip(seq1, seq2, seq3, ...)
+
