@@ -1,13 +1,14 @@
 #!/usr/bin/python
 
 '''
-Fibonacci:
-	f(x): x is an integer and x > 0
-		f(n) = f(n-1) + f(n-2)
-		f(2) = f(1) = 1 
-		[f(x)]: 1,1,2,3,...
-define a function:
-	which return the N fibonacci when given the N number
+Exercise 8-9:
+	Fibonacci:
+		f(x): x is an integer and x > 0
+			f(n) = f(n-1) + f(n-2)
+			f(2) = f(1) = 1 
+			[f(x)]: 1,1,2,3,...
+	define a function:
+		which return the N fibonacci when given the N number
 '''
 
 def Fibonacci(n):

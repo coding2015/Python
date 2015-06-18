@@ -2,7 +2,7 @@
 '''
 Exercise 8-7:
 	perfect number: 
-		number = sum(num'factors) (factor doesn't include num itself)
+		number == sum(num'factors) (factor doesn't include num itself)
 	require:
 		define a function: isperfect()
 		given an integer, judge if it's a perfert number 
