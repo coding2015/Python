@@ -1,7 +1,12 @@
 #!/usr/bin/python
 '''
-wait to improve:
+Problem:
 	use less codes to implement descending or ascending sort
+Solve:
+        reverse_sorting_list = sorted_list.reverse() or reversed(sorted_list)
+        so in the end of Bubble(), add:
+        if reverse:
+           a.revered() 
 '''
 
 def Bubble(a, reverse=False):
