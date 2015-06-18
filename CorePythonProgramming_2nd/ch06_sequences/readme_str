@@ -1,15 +1,15 @@
-chapter 6
-	Sequences: Strings, Lists, Tuples
+#!/usr/bin/python
+
+
+str:
 
 ------------------------------------------------------------------------------
-Str:
-
-List of str-type's methods(Python 2.7.5):
+"List of str-type's methods(Python 2.7.5):"
 
 函数名				功能
 capitalize()	首字母大写 'arr7buu cvv'.capitalize(): 'Arr7buu cvv'
 center(width, fillchar=' ')	居中对齐
-count(sub,beg=0,end=len(str))	查找字符串中包含的sub个数
+count(sub,beg=0,end=len(str))	计算字符串中包含的sub个数
 decode(encoding='Utf-8', errors='strict')	解码成encoding格式
 encode(encoding='Utf-8', errors='strict')	按encoding格式编码
 endswith(suffix, beg=0, end=len(str))	检查字符串是否有后缀suffix
@@ -48,6 +48,4 @@ zfill(width)	右对齐，并以0填充补齐width长度，等同于:rjust(width,
 
 注：
 * 表示还未用过或未弄明白
-
-
 --------------------------------------------------------------------------------

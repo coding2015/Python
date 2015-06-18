@@ -12,3 +12,6 @@ lambda:
 	lambda args: expression
 	等同于：
 	def name(args):return expression
+	
+	eg:
+		map(lambda x:x**2, range(10))
