@@ -15,3 +15,7 @@ lambda:
 	
 	eg:
 		map(lambda x:x**2, range(10))
+
+
+yield 语句：
+	仅用在定义generator函数中

@@ -1,6 +1,11 @@
 #!/usr/bin/python
 
-def IsLeapYear(year):
+'''
+Exercise 5-4:
+	judge a given year is a leapyear
+'''
+
+def isleapyear(year):
 	"""
 	Make a judgement of weather the given year is a leap year or not
 	Leap year:
@@ -14,9 +19,9 @@ def IsLeapYear(year):
 
 
 def main():
-	print IsLeapYear.__doc__
+	print isleapyear.__doc__
 	year = int(raw_input('enter a year> '))
-	print "%d is a leap year: %s" % (year,IsLeapYear(year))
+	print "%d is a leap year: %s" % (year,isleapyear(year))
 
 
 #Entry
