@@ -1,8 +1,16 @@
 #!/usr/bin/python
-
+#coding:utf-8
 '''
 Exercise 5-4:
 	judge a given year is a leapyear
+
+leap year:
+	闰年：
+		1.能被4整除但不能被100整除
+		2.或能被400整除
+		两个条件相似(能被400整除的当然也能被100整除)，但是仔细思量有区别：
+			能被4和100整除的比如200 不能被400整除
+		故从能被4整除的数中剔除能被100整除的数，在另外增加能被400整除的数
 '''
 
 def isleapyear(year):

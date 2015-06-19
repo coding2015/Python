@@ -10,6 +10,8 @@ KeyPoint:
 
 Problem:
 	priority combination of 'not and or' 
+Test-Conlude:
+	not > and/or: it combine from left to right
 '''
 
 # filter() 
@@ -22,19 +24,22 @@ def yearsfilter(years):
 	return leaps
 
 #years = [1999, 2000, 432, 2014, 2016]
-years = range(1000)
 #print 'years:', years
-lf = yearsfilter(years) 
 #print 'leaps:', yearsfilter(years)
-
-
-# line comprehension
+#
+#
+## line comprehension
 #print 'line comprehension:\nleaps:', [y for y in years \
-#		if not y%4] 
-		#if ( y % 4 == 0 and y % 100) or y % 400 == 0] 
-ll = [y for y in years if not y%4]
+#		if ( y % 4 == 0 and y % 100) or y % 400 == 0] 
+#
 
+
+years = range(-2000,3000)
+lf = yearsfilter(years) 
+ll = [y for y in years if not y%4 and y%100 or not y%400 ]
+			# same as: if (y % 4 == 0 and y % 100) or y % 400 == 0
 print 'len:',len(lf) ,len(ll)  #len(ll)> len(lf)
 for y in ll:
 	if y not in lf:
 		print y
+
