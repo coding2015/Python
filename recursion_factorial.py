@@ -1,9 +1,16 @@
 #!/usr/bin/python
+#coding:utf-8
 '''
 factorial: 
 	N!= 1*2*3*...*N
 	N >= 0, 0! = 1
 	implement this in a recursion way
+
+Note:
+	10! = 3628800
+	1000!: RuntimeError:maximum recursion depth exceeded
+	原因：递归展开(深度)存在限制
+	试验结果：当n>=999时报错
 '''
 
 def Factorial(n):

@@ -33,6 +33,39 @@ def	timeit(func, *nkwargs, **kwargs):
 	time_elapsed = end - beg
 	return (time_elapsed, retval)
 
+
+def multi_timeit(funcs, showRetval=True, *vals): #!kwargs should be in front of *arg
+	'''
+	compare multy functions's time-elaspe, and print it in format
+		funcs: a list of functions
+		*vals: values for funcs' args
+		showRetval: whether to show the func's return value
+	usage:
+		eg: multi_timeit(funcs, *(tuple/list))
+	'''
+
+	#nFormat = "%s(%s)".ljust(20) + ' time-elapse(%.5f)s'
+		#can't relize the whole output's ljust here
+
+	print 'type(vals):', type(vals)
+	print 'vals:', vals
+	
+	for eachFunc in funcs:
+		print '-' * 30
+		for eachVal in vals:	
+			ret = timeit(eachFunc, eachVal)
+			if showRetval:
+				Format = ("%s(%s) = %s" % \
+						 (eachFunc.__name__, `eachVal`, ret[1])).ljust(30) \
+						+ ' time-elapse(%.5f)s' % ret[0]
+				print Farmat 
+			else:
+				nFormat = ("%s(%s):"%(eachFunc.__name__,`eachVal`)).ljust(20) \
+						+ ' time-elapse(%.5f)s' % ret[0]
+			
+				print nFormat
+
+
 	
 #import self's module
 import sys
@@ -43,13 +76,7 @@ import perfectNum
 def test():
 	funcs = (perfectNum.isperfect, perfectNum.perfectNums)
 	vals = (6, 28,'496',10000)
-	for func in funcs:
-		print '-' * 30
-		for val in vals:
-			ret = timeit(func,val)
-			#print '%s(%s) = %s, time-elapsed:%.2fs' % (func, `val`,ret[1],ret[0])
-			print '%s(%s) = %s, time-elapsed(%.2fs)' % \
-							 (func.__name__, `val`,ret[1],ret[0])
+	multi_timeit(funcs, False, *vals)
 
 
 if __name__ == '__main__':

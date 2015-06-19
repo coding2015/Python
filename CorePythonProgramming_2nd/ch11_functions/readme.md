@@ -19,3 +19,17 @@ lambda:
 
 yield 语句：
 	仅用在定义generator函数中
+
+
+函数式编程：
+	lambda
+	BIFs: apply(), filter(), reduce(), map()
+	偏函数：functools.partial(func,arg=val)
+	前两项部分可被列表解析替代 
+
+
+递归函数：
+	可以递归的必要条件：
+	有止
+	有返回
+	
