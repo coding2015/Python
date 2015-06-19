@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+dict:
+
+-----------------------------------------------------------------------------------
+"List of dict-type's methods"
+
+	函数					功能
+clear() ->{}		#清空字典
+copy()	->dict		#浅拷贝字典
+fromkeys(seq, val=None) ->dict		#创建字典：抽取seq各元素为键，各键值默认为:None
+get(key, default=None) ->value		#若key存在返回d[key], 否则返回default
+has_key(key) ->bool 	#若key存在返回True否则False, 作用同 in/not in
+items()	->list			#返回列表，列表元素为键值对元组
+iteritems()	->iterator		#返回键值对迭代器
+iterkeys() ->iterator		#返回键迭代器
+itervalues() ->iterator		#返回键值迭代器
+keys() ->list				#返回键列表
+pop(key[,default]) ->value	#若key存在删除并返回d[key],否则返回default或报错KeyError
+popitem() ->(key, value)	#随机？删除并返回一个键值对，若字典为空报错KeyError
+setdefault(key, default=None) ->d[key] #若key不存在则创建并返回d[key](键值默认None)
+update(dict2) 		#将字典2合并到字典中，并覆盖同key的值
+values() ->list		#返回键值列表
+viewitems() ->dict_items	#返回一个包含所有键值对的集合对象
+viewkeys()	->dict_keys		#返回一个包含所有键的集合对象
+viewvalues()->dict_values	#返回一个包含所有键的集合对象
+-----------------------------------------------------------------------------------

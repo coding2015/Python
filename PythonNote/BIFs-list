@@ -3,7 +3,9 @@
 a quick view for file './BIFs'
 '''
 
-map(func, seq) -> list
+map(func, seq1,seq2,...) -> list  #返回序列的映射序列，序列个数==func参数个数
+reduce(func, seq, init=None) -> value	#func为二元函数
+filter(func, seq) ->subseq 	#返回子序列：items of func(item)==True 
 compare rules
 repr(val/cmd) or `val/cmd` -> value of val/cmd
 float(str/num) -> float
@@ -14,11 +16,9 @@ min(seq) -> value
 sum(iterable) -> value
 any(iterable) -> bool
 all(iterable) -> bool
-filter(func, seq) ->seq
 enumerate(iterable, count=0) -> enumerate-obj
 range() -> list
 xrange() -> iterator
-reduce(func, seq)
 reversed(seq) -> seq
 sorted(iterable, cmp=None, key=None, reverse=False)
 zip(seq1, seq2, seq3, ...)

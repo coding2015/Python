@@ -6,15 +6,15 @@ list:
 "List of list-type's methods(Python 2.7.5):"
 
 函数					功能
-append(obj)			在列表末尾添加元素obj
-^ count(obj)		    计算列表中obj的个数
-extend(iterable)	将iterable的元素添加到列表末尾，若为字典则只添加keys
-^ index(obj, beg=0, end=len(list)) 返回元素obj的最低索引，若找不到报错ValueError
-insert(index, obj)	在index前添加obj, 若index<-len(list)/>len(list)-1 则在首/末添加
-pop(index=-1)		删除并返回索引元素，默认删除最后一个元素
-remove(obj)			删除第一个obj, 若无obj报错ValueError
-reverse()			翻转列表
-sort(cmp=None, key=None，reverse=False) 列表排序，默认升序
+append(obj)			#在列表末尾添加元素obj
+^ count(obj)		#计算列表中obj的个数
+extend(iterable)	#将iterable的元素添加到列表末尾，若为字典则只添加keys
+^ index(obj, beg=0, end=len(list)) #返回元素obj的最低索引，若找不到报错ValueError
+insert(index, obj)	#在index前添加obj, 若index<-len(list)/>len(list)-1 则在首/末添加
+pop(index=-1)		#删除并返回索引元素，默认删除最后一个元素
+remove(obj)			#删除第一个obj, 若无obj报错ValueError
+reverse()			#翻转列表
+sort(cmp=None, key=None，reverse=False) #列表排序，默认升序
 
 注：
 所有以上操作改变的是原列表本身

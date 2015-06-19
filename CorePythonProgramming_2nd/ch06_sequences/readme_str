@@ -7,43 +7,43 @@ str:
 "List of str-type's methods(Python 2.7.5):"
 
 函数名				功能
-capitalize()	首字母大写 'arr7buu cvv'.capitalize(): 'Arr7buu cvv'
-center(width, fillchar=' ')	居中对齐
-count(sub,beg=0,end=len(str))	计算字符串中包含的sub个数
-decode(encoding='Utf-8', errors='strict')	解码成encoding格式
-encode(encoding='Utf-8', errors='strict')	按encoding格式编码
-endswith(suffix, beg=0, end=len(str))	检查字符串是否有后缀suffix
-expandtabs(size=8)		设置tab字符处显示的空格个数
-find(sub, beg=0, end=len(str))	返回字符串中sub的最低索引值，若不含sub返回-1
-* format(...)		返回格式化的字符串
-index(sub, beg=0, end=len(str))	同find, 但找不到时报错ValueError
-isalnum()	检查字符串是否只包含字母和数字
-isdigit()	检查字符串是否只包含数字
-islower()	检查字符串所有字母是否小写，若字符串中无字母返回False
-isspace()	检查字符串中所有字符是否都是whitespace
-istitle()	检查字符串中所有单词首字母是否大写，'Tss8tt'.istitle(): False
-isupper()	检查字符串所有字母是否大写，若字符串中无字母返回False
-join(seq)	将seq各元素通过join连接，seq(str/list/tuple)里的元素必须都是str类型
-ljust(width, fillchar=' ')	左对齐
-lower()		将字符串中所有字母小写
-lstrip(chars=whitespace)	截去字符串左起所有whitespace
-partition(sub)	将字符串从左开始分成三部分(head, sub, tail)
-replace(old, new, num=str.count(old))	替换子字符串
-rfind(sub, beg=0，end=len(str))		查找字符串中sub的最高索引值,若不含sub返回-1
-rindex(sub,beg=0, end=len(str))		同rfind，但若不含sub报错ValueError
-rjust(width, fillchar=‘ ’)	右对齐
-rpartition(sub)	将字符串从右分成三部分'iwewey'.rpartition('w'): ('iwe','w','ey')
-rsplit(sep=whitespace, num=len.count(sep))	从右按sep分割字符串
-rstrip(chars=whitespace)	截去字符串右起(末尾)所有whitespace
-split(sep=whitespace, num=len.count(sep))	从左按sep分割字符串
-splitlines(keepends=False)	按行分割，默认不保留换行符
-startswith(prefix, beg=0, end=len(str))		检查字符串是否有前缀prefix
-strip(chars=whitespace)		截去首尾所有whitespace
-swapcase()	翻转字符串中所有字母的大小写
-title()		将字符串中所有的单词标题化(单词首字母大写)	
-* translate(str, del='')	根据str(含256个字符)转换字符串，过滤掉del
-upper()		将字符串中所有字母大写
-zfill(width)	右对齐，并以0填充补齐width长度，等同于:rjust(width, '0')
+capitalize()	#首字母大写 'arr7buu cvv'.capitalize(): 'Arr7buu cvv'
+center(width, fillchar=' ')		#居中对齐
+count(sub,beg=0,end=len(str))	#计算字符串中包含的sub个数
+decode(encoding='Utf-8', errors='strict')	#解码成encoding格式
+encode(encoding='Utf-8', errors='strict')	#按encoding格式编码
+endswith(suffix, beg=0, end=len(str))		#检查字符串是否有后缀suffix
+expandtabs(size=8)		#设置tab字符处显示的空格个数
+find(sub, beg=0, end=len(str))	#返回字符串中sub的最低索引值，若不含sub返回-1
+* format(...)		#返回格式化的字符串
+index(sub, beg=0, end=len(str))		#同find, 但找不到时报错ValueError
+isalnum()	#检查字符串是否只包含字母和数字
+isdigit()	#检查字符串是否只包含数字
+islower()	#检查字符串所有字母是否小写，若字符串中无字母返回False
+isspace()	#检查字符串中所有字符是否都是whitespace
+istitle()	#检查字符串中所有单词首字母是否大写，'Tss8tt'.istitle(): False
+isupper()	#检查字符串所有字母是否大写，若字符串中无字母返回False
+join(seq)	#将seq各元素通过字符串连接，seq(str/list/tuple)里的元素必须都是str类型
+ljust(width, fillchar=' ')	#左对齐
+lower()		#将字符串中所有字母小写
+lstrip(chars=whitespace)	#截去字符串左起所有whitespace
+partition(sub)		#将字符串从左开始分成三部分(head, sub, tail)
+replace(old, new, num=str.count(old))	#替换子字符串
+rfind(sub, beg=0，end=len(str))		#查找字符串中sub的最高索引值,若不含sub返回-1
+rindex(sub,beg=0, end=len(str))		#同rfind，但若不含sub报错ValueError
+rjust(width, fillchar=‘ ’)			#右对齐
+rpartition(sub)	#将字符串从右分成三部分'iwewey'.rpartition('w'): ('iwe','w','ey')
+rsplit(sep=whitespace, num=len.count(sep))	#从右按sep分割字符串
+rstrip(chars=whitespace)		#截去字符串右起(末尾)所有whitespace
+split(sep=whitespace, num=len.count(sep))	#从左按sep分割字符串
+splitlines(keepends=False)		#按行分割，默认不保留换行符
+startswith(prefix, beg=0, end=len(str))		#检查字符串是否有前缀prefix
+strip(chars=whitespace)		#截去首尾所有whitespace
+swapcase()		#翻转字符串中所有字母的大小写
+title()			#将字符串中所有的单词标题化(单词首字母大写)	
+* translate(str, del='')	#根据str(含256个字符)转换字符串，过滤掉del
+upper()			#将字符串中所有字母大写
+zfill(width)	#右对齐，并以0填充补齐width长度，等同于:rjust(width, '0')
 
 
 注：
