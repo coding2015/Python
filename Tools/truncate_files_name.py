@@ -18,9 +18,9 @@ KeyPoint:
 schedule:
 	实现去头			done
 	命令行传参			done
-	修改文件名  
-	批量修改文件名
-	命令选项 -p,-x,..
+	修改文件名 			done 
+	批量修改文件名		done
+	命令选项 -p,-x,..	half-done
 	实现去尾
 '''
 
