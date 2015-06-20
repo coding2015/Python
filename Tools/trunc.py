@@ -28,7 +28,7 @@ Experience:
 		1. make short name of function
 		2. limit the function'a code-lines under 25
 			if it exceeds, split the function to several functions
-		3. be sure of your judgement and be lazy as much as possible
+		3. be confident in your judgement and be as lazy as possible
 		   and determin a set of test-data before execution
 
 schedule:
