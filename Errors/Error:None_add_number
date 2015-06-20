@@ -1,0 +1,5 @@
+#!/usr/bin/python
+
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
+
+None 为非数字类型，不能参与数值运算

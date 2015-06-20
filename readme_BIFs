@@ -22,4 +22,5 @@ xrange() -> iterator
 reversed(seq) -> seq
 sorted(iterable, cmp=None, key=None, reverse=False)
 zip(seq1, seq2, seq3, ...)
-
+locals() -> dict	#返回局部名字空间,变量或函数名做为键被引号包含，其值为键值
+globals() -> dict	#返回全局名字空间	
