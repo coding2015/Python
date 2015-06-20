@@ -1,0 +1,14 @@
+#!/usr/bin/python
+
+'''
+Problem:
+	why lambda can't include print()?
+	It's okay to include other functions,like reduce()
+'''
+
+lambda x: print x
+lambda x: print(x)
+
+#SyntaxError: invalid syntax
+	
+

@@ -1,6 +1,11 @@
 #!/usr/bin/python
-
-'a test for try-except-finally'
+#coding:utf-8
+'''
+Study try-except-finally:
+	finally:
+		如果finally中引发另一个异常或终止循环(break/continue)或退出函数(continue)，
+	则原来的异常将被覆盖或丢失。
+'''
 
 #
 def OverWrite():
@@ -28,13 +33,20 @@ def Break():
 #OverWrite()
 #Break()
 
+
 while True:
 	try:
 		try:
 			float('xx')
 		finally:
-			break # end of this loop, and the exception isn't processed
+			#break # !end of this loop, and the exception isn't processed
 			float({}) 
 	except (ValueError, TypeError),r:
 		print 'r:',r
+		break
 
+
+#=====Output=====
+'''
+r: float() argument must be a string or a number
+'''
