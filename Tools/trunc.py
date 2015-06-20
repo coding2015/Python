@@ -11,29 +11,46 @@ KeyPoint:
 	sys.argv 命令行参数
 	系统shell命令有些不奏效，需由os模块的相应方法实现
 		os.path.exists(path/file) 	查看路径或文件是否存在
-		os.chdir(path) 切换当前路径
+		os.chdir(path)	切换当前路径
 		os.system('git mv name cutted')	重命名git文件	
 		os.system('mv name cutted')		重命名非git文件
 
+Experience:
+	it's taken too much time to implement this tool(trunc-head)
+	and almost lost consciousness in the end 
+	which is very low effient and due to:
+		1. too long of the main function codes
+				which make it difficult to debug and easy to raise errors
+				and lead to confused construction of the function
+		2. too long of function names
+		3. too much repeat of verifying a point
+	ways to improve:
+		1. make short name of function
+		2. limit the function'a code-lines under 25
+			if it exceeds, split the function to several functions
+		3. be sure of your judgement and be lazy as much as possible
+		   and determin a set of test-data before execution
+
 schedule:
-	实现去头			done
-	命令行传参			done
-	修改文件名 			done 
-	批量修改文件名		done
-	命令选项 -p,-x,..	half-done
-	实现去尾
+	实现去头	done
+	实现去尾	suspend
 '''
 
 
-def truncate_head(name, prefix):
+def cutprefix(name, prefix):
+	'return the name after cutting prefix'
 	if prefix in name and len(prefix) < len(name):
 		if name.find(prefix)==0:
-			return name[len(prefix):]
+			cut = name[len(prefix):]
+			if cut[0].isalnum() or cut[0] == '_':
+				return cut
 	else:
 		return None
+
 		
-def rename_file(old, new, isgit=False):
-	print 'rename_file(%s, %s, %s)' % (old, new, isgit)
+def rename(old, new, isgit=False):
+	'rename file from old to new'
+	print 'rename(%s, %s, %s)' % (old, new, isgit)
 	if isgit:
 		cmd = 'git mv %s %s' % (old, new)
 		os.system(cmd)
@@ -41,13 +58,12 @@ def rename_file(old, new, isgit=False):
 		cmd = 'mv %s %s' % (old, new)
 		os.system(cmd)
 
-def rename_files_cutprefix():
+
+def prepare():
 	'''
-	usage:
-		 xxx.py -g path pre
-		 xxx.py -l path pre
+	prepare before trunchead:
+		examination arguments from cmdline
 	'''
-	# arguments examination
 	if len(sys.argv) != 4:
 		print 'invalid arguments\n\t should be like xxx.py -[l,g] path prefix'
 		return
@@ -58,52 +74,56 @@ def rename_files_cutprefix():
 		print sys.argv[2], 'does not exist'
 		return
 
-	print 'arguments:ok'	
 	isgit = True if sys.argv[1]=='-g'else False
 	fpath = sys.argv[2]
 	prefix = sys.argv[3]
 
+	return (fpath, prefix, isgit)
 
-	# prefix truncation
-	curpath	= os.getcwd()
-	print 'curdir:', curpath
+
+def trunchead():
+	'''
+	truncating the head of a batch files
+	usage:
+		 xxx.py -g path pre
+		 xxx.py -l path pre
+	'''
+	
+	args = prepare()
+	if not args:
+		return
+	else:
+		fpath, prefix, isgit = args
+
 	os.chdir(fpath)
-	print 'curdir:', os.getcwd()
-	
-	files = os.listdir('.') #注意，已经切换到操作目录
-							  #所以除非能保证fpath是绝对路径，否则此处最好‘.’
-	print
-	print 'before rename:\nfiles(%d):\n' % len(files), files
-	
-	cuttimes = 0
-	for eachFile in files:
-		cutted = truncate_head(eachFile, prefix)
-		if cutted:
-			rename_file(eachFile, cutted, isgit)
-			cuttimes += 1
-
 	files = os.listdir('.')
-	print
-	print 'after rename(%d):\nfiles(%d)\n'% (cuttimes,len(files)),files
+	
+	for eachFile in files:
+		cutted = cutprefix(eachFile, prefix)
+		if cutted:
+			rename(eachFile, cutted, isgit)
+
+	files2 = os.listdir('.')
+	print 'before rename:\nfiles(%d):\n' % len(files), files
+	print 'after rename :\nfiles(%d):\n' % len(files2),files2
 		
 	#os.chdir(curpath) #不需此举，程序结束后会自动返回原来的目录
-	#print os.getcwd()
 
 if __name__ == '__main__':
-	rename_files_cutprefix()	
+	trunchead()	
 
 
 #============test functions==================
 def test_cutprefix():
 	"""
 	this test proved that:
-	truncate_head only cut the head of the name exactly equal to the given prefix
+	cutprefix only cut the head of the name exactly equal to the given prefix
 	and it's case sensitivity
 	"""
 	pre = 'str'
 	vals = ('strtest','test_strteststr','Str.test','STR','str')
 	for name in vals:
-		cutted = truncate_head(name, pre)
+		cutted = cutprefix(name, pre)
 		if cutted:
 			print ('cut(%s):' % name).ljust(25) + cutted	
 		else:
@@ -116,7 +136,7 @@ def test_cutprefix_cmdline():
 		return
 	name = sys.argv[1]
 	prefix = sys.argv[2]
-	cutted = truncate_head(name, prefix)
+	cutted = cutprefix(name, prefix)
 	if cutted:
 		print 'cutted:', cutted
 	else:
