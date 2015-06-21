@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+file
+
+-----------------------------------------------------------------------------------
+"List of file-type method (Python 2.7.5)"
+
+'Method'
+close()				#关闭文件
+fileno() ->integer	#返回文件描述符(FD)
+flush()	->None		#刷新文件内部缓冲
+isatty() ->bool		#查看文件是否是一个tty设备
+next()				#返回文件的下一行(类似readline()),没有下一行时报错StopIteration
+read(size=-1) ->str	#读取size个字节，若size<0 读取文件剩余所有字节		
+！ readinto()		#注：未来将舍去，不要用该法
+readline(size=-1) ->str	#返回文件下一行的size个字节，若size<0或>行字节数，返回整行
+readlines(size=-1) ->list	#返回所有行构成的列表，若size>0 返回>=size缓冲的列表
+seek(offset,whence=0) ->None	#移动文件指针：从whence偏移offset个位置
+								#whence:0/1/2,开始/当前/结尾
+tell() ->integer	#返回文件当前位置
+truncate(size=file.tell()) ->None	#‘w/a’模式下，截取从文件开头计起的size大小内容
+									#并重写入文件
+write(str) ->None	#写入字符串，由于缓冲需要flush或close后才能在硬盘查看写入的数据
+writelines(seq) ->None	#写入序列（元素都为字符串），不会自动添加换行符
+xreadlines -> slef	#用于迭代读取文件的一块，大数据时比readlines()高效
+-----------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------
+"Related to file-type"
+
+open(fname, mode='r', buffering=-1) -> file 
+			#BIF, 默认：以读方式打开文件，采用系统缓冲机制
+			#mode:	
+			#'w':新建文件，若fname存在则其所有内容将被删除，慎！
+			#	 若在当前位置write(data), 则当前位置之后的size(data)内容将被覆盖
+			#‘a’:以追加方式打开文件，若文件不存在则新建文件
+			#    无论当前位置在哪，write(data)只会被追加到文件末尾
+
+os.SEEK_SET=0		#文件起始位置
+os.SEEK_CUR=0		#文件当前位置
+os.SEEK_END=0		#文件末尾位置
+-----------------------------------------------------------------------------------
+
