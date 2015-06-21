@@ -12,8 +12,8 @@ KeyPoint:
 	系统shell命令有些不奏效，需由os模块的相应方法实现
 		os.path.exists(path/file) 	查看路径或文件是否存在
 		os.chdir(path)	切换当前路径
-		os.system('git mv name cutted')	重命名git文件	
-		os.system('mv name cutted')		重命名非git文件
+		os.system('git mv name omitted')	重命名git文件	
+		os.system('mv name omitted')		重命名非git文件
 
 Experience:
 	it's taken too much time to implement this tool(trunc-head)
@@ -99,9 +99,9 @@ def trunchead():
 	files = os.listdir('.')
 	
 	for eachFile in files:
-		cutted = cutprefix(eachFile, prefix)
-		if cutted:
-			rename(eachFile, cutted, isgit)
+		omitted = cutprefix(eachFile, prefix)
+		if omitted:
+			rename(eachFile, omitted, isgit)
 
 	files2 = os.listdir('.')
 	print 'before rename:\nfiles(%d):\n' % len(files), files
@@ -123,9 +123,9 @@ def test_cutprefix():
 	pre = 'str'
 	vals = ('strtest','test_strteststr','Str.test','STR','str')
 	for name in vals:
-		cutted = cutprefix(name, pre)
-		if cutted:
-			print ('cut(%s):' % name).ljust(25) + cutted	
+		omitted = cutprefix(name, pre)
+		if omitted:
+			print ('cut(%s):' % name).ljust(25) + omitted	
 		else:
 			print ('ncut(%s):' % name).ljust(25) + name	
 
@@ -136,9 +136,9 @@ def test_cutprefix_cmdline():
 		return
 	name = sys.argv[1]
 	prefix = sys.argv[2]
-	cutted = cutprefix(name, prefix)
-	if cutted:
-		print 'cutted:', cutted
+	omitted = cutprefix(name, prefix)
+	if omitted:
+		print 'omitted:', omitted
 	else:
 		print 'nothing to cut', name
 
