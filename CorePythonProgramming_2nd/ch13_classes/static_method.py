@@ -10,27 +10,41 @@
 	
 keypoint
 	staticmethod(function) -> method
+	classmethod(function) -> method, \
+					function至少带一个参数用于接收解释器自动传入的类名
+
+	usage(2 ways):
+		1.assignment
+			after define the function:	
+				fun = staticmethod(fun)
+		2.decorator
+			before define the function use decorator(@...):
+				@classmethod
+				def fun(cls,...):
+					pass	
 '''
 
 def globalfun():
 	print '\tglobal function'
 
 class StM():
+
 	def cfun():
-		print '\tcfun()'
+		print '\tcfun()'	
 	
 	def cfuns(self):
 		print '\tcfuns(%s)' % self
-
+	
 	CF = staticmethod(cfun)
 	CFs = staticmethod(cfuns)
 	Glo = staticmethod(globalfun)
 
-
+	
+	@classmethod
 	def foo(cls):	# 至少得有一个变量，否则不能类方法化
 		print '\tfoo(%s)' % cls
 	
-	Foo = classmethod(foo)	#调用时解释器自动将类传给foo的第一个参数
+	#foo = classmethod(foo)	#调用时解释器自动将类传给foo的第一个参数
 
 def test():	
 	s = StM()
@@ -68,9 +82,9 @@ def test():
 
 	print '4.<<<classmethod>>>'
 	print 'class.classmethod(cls)'
-	StM.Foo()
+	StM.foo()
 	print 'instance.classmethod(cls)'
-	s.Foo()
+	s.foo()
 
 if __name__ == '__main__':
 	test()
