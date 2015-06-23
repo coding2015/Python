@@ -27,9 +27,11 @@ locals() -> dict	#返回局部名字空间,变量或函数名作为键被引号�
 globals() -> dict	#返回全局名字空间	
 vars([object]) -> dict #vars() == locals(), vars(object) -> object.dict
 * round(num, precise=0) -> float	#四舍五入，precise精确位数
-getattr(object, attr[,default]) -> object.attr / default
+getattr(object, attr[,default]) -> object.attr / default  \
 					# attr 需用引号包含起来，若object.attr不存在返回default
-
+staticmethod(function) -> method	#将函数转换成类的静态函数
+classmethod(function) -> method	#将函数转化成类方法，\
+						# function至少有一个参数用于接收解释器自动传入的类名
 ---------------------------------------------------------------------------
 备注：
 * round()
