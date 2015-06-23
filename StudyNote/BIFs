@@ -25,3 +25,28 @@ sorted(iterable, cmp=None, key=None, reverse=False)
 zip(seq1, seq2, seq3, ...)
 locals() -> dict	#返回局部名字空间,变量或函数名作为键被引号包含，其值为键值
 globals() -> dict	#返回全局名字空间	
+vars([object]) -> dict #vars() == locals(), vars(object) -> object.dict
+* round(num, precise=0) -> float	#四舍五入，precise精确位数
+getattr(object, attr[,default]) -> object.attr / default
+					# attr 需用引号包含起来，若object.attr不存在返回default
+
+---------------------------------------------------------------------------
+备注：
+* round()
+	'''
+	>round(num,precise=0).四舍五入
+			precise
+				默认0，表精度为整数（仍为浮点数类型xxx.0)
+				>0, 精度为小数点左数位数（小数位数）
+				<0, 精度为小数点右边位数（整数位数）
+		>int(n), math.floor(n),round(n)
+			int(n):去小数部分
+					n>0时，int(n)<=n; 
+					n<0时，int(n)>=n
+			floor(n):取小于n的最大整数（浮点数类型）
+					无论n何值,floor(n)<=n
+			round(n):四舍五入，取最接近n的整数（浮点数类型）
+					n>0时，四舍<n,五入>n
+					n<0时，四舍>n.五入<n
+	'''
+-------------------------------------------
