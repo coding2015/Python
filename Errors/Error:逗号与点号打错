@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+键盘上逗号与点号挨得近
+且打印到屏幕上后由于太小也不好分清
+故容易打错
+
+eg:
+super(C. self).fun1()
+AttributeError: type object 'C' has no attribute 'self'
+# C 后面的逗号打成了点号

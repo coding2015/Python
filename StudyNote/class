@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+class
+
+--------------------------------------------------------------------------------
+"List of class-type attribute"
+
+T.__new__(S, ...)	 #创建类S的新对象, S为T的子类
+					 #eg float.__new__(cls)
+
+
+--------------------------------------------------------------------------------
+"Concept"
+
+绑定调用		#方法由实例对象调用 instance.method()
+非绑定方式		#由类调用，并显示传入实例作为参数 class.method(instance)
+					#应用场景：子类对象调用被遮蔽的父类方法
+						#在子类定义的方法中
+							# pclass.method(self, args)
+							# 或: super(cclass,self).method(args)

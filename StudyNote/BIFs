@@ -1,39 +1,75 @@
 #!/usr/bin/python
 '''
-a quick view for file './BIFs'
+built-in functions
 '''
 
-open(fname, mode='r', buffering=-1)	# 打开文件， 默认：读方式，使用系统缓冲机制
+函数式编程
 map(func, seq1,seq2,...) -> list  #返回序列的映射序列，序列个数==func参数个数
 reduce(func, seq, init=None) -> value	#func为二元函数
 filter(func, seq) ->subseq 	#返回子序列：items of func(item)==True 
+
+数值
 compare rules
-repr(val/cmd) or `val/cmd` -> value of val/cmd
 float(str/num) -> float
+* round(num, precise=0) -> float	#四舍五入，precise精确位数
+
+序列
 hash(obj) -> integer (if hashable)
 len(iterable) -> item numbers of iterable obj
 max(seq) -> value
 min(seq) -> value
 sum(iterable) -> value
-any(iterable) -> bool
-all(iterable) -> bool
+any(iterable) -> bool	# 查看任意元素是否为真，若迭代器为空返回False
+all(iterable) -> bool	# 查看所有元素是否为真，若迭代器为空返回True
 enumerate(iterable, count=0) -> enumerate-obj
-range() -> list
-xrange() -> iterator
+* range() -> list of integers
+* xrange() -> iterator
 reversed(seq) -> seq
 sorted(iterable, cmp=None, key=None, reverse=False)
 zip(seq1, seq2, seq3, ...)
+
+
+repr(val/cmd) or `val/cmd` -> value of val/cmd
+open(fname, mode='r', buffering=-1)	# 打开文件， 默认：读方式，使用系统缓冲机制
 locals() -> dict	#返回局部名字空间,变量或函数名作为键被引号包含，其值为键值
 globals() -> dict	#返回全局名字空间	
-vars([object]) -> dict #vars() == locals(), vars(object) -> object.dict
-* round(num, precise=0) -> float	#四舍五入，precise精确位数
-getattr(object, attr[,default]) -> object.attr / default  \
-					# attr 需用引号包含起来，若object.attr不存在返回default
+
+
+类相关
+* vars([object]) -> dict # vars() == locals(), vars(object) -> object.__dict__
+* dir([object]) -> list  # 返回对象的命名空间列表，dir() == locals().keys()
 staticmethod(function) -> method	#将函数转换成类的静态函数
 classmethod(function) -> method	#将函数转化成类方法，\
 						# function至少有一个参数用于接收解释器自动传入的类名
+super(type, instance/self).method(args)	\
+					# 调用type基类的method, instance/self为type的实例
+					#可以在类外也可以在类内调用
+
+issubclass(sub,sup) ->bool	 # 判断sub是否是sup的子类
+							 # sup的值可以是:sub, class, tuple of classes
+isinstance(obj, class/type/tuple) ->bool  # 判断obj是否是给定类型的实例
+类属性系列
+hasattr(obj/class/type, str(attr)) ->bool  # 查看对象是否有属性attr
+* getattr(obj，attr[,defalut]) ->obj.attr  # 返回对象属性，若无报错或返回default
+setattr(obj, attr, value) ==  `obj.attr = value`	# 设置属性(变量)
+delattr(obj, attr) == `del obj.attr`
+
 ---------------------------------------------------------------------------
 备注：
+* range() -> list of integers
+   	range(end) #start=0, step=1
+    range(start, end, step=1)
+	''' 
+	分两种语法,不能通过关键字传参
+    error: range(end=10,step=2)	
+	'''
+
+* xrange() -> iterator of integers
+	'''
+	类似range(), 也分两种语法
+	但返回的是迭代器，故对于大数据性能优于range()
+	'''
+
 * round()
 	'''
 	>round(num,precise=0).四舍五入
@@ -50,5 +86,18 @@ classmethod(function) -> method	#将函数转化成类方法，\
 			round(n):四舍五入，取最接近n的整数（浮点数类型）
 					n>0时，四舍<n,五入>n
 					n<0时，四舍>n.五入<n
+	'''
+* vars()  dir()
+	'''
+ 	dir(instance) == dir(class) + 实例自定义属性
+	vars(instance) == 实例自定义属性字典
+	'''
+
+* getattr()
+	'''
+	eg:
+		getattr(md, 'func')() == md.func()
+		getattr(md, 'name')  == md.name
+		getattr(md, 'xxx', 'None') 
 	'''
 -------------------------------------------
