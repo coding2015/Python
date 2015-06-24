@@ -7,6 +7,10 @@ chapter 11:
 	Python无类似C的函数声明(声明与定义分开)
 
 
+可变长参数
+	(位置参数， 关键字参数， 可变长参数元组， 可变长关键字字典)
+   （pos-args, kw-args, *args, **kwargs）	
+
 lambda:
 	匿名函数
 	lambda args: expression

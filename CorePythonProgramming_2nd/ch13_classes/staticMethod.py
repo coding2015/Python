@@ -9,19 +9,28 @@
 		由实例调用静态方法，python不会自动将实例传入静态方法
 	
 keypoint
-	staticmethod(function) -> method
-	classmethod(function) -> method, \
+	声明(静态方法/类方法)：
+		staticmethod(function) -> method
+		classmethod(function) -> method, \
 					function至少带一个参数用于接收解释器自动传入的类名
 
-	usage(2 ways):
-		1.assignment
-			after define the function:	
-				fun = staticmethod(fun)
-		2.decorator
-			before define the function use decorator(@...):
-				@classmethod
-				def fun(cls,...):
-					pass	
+		usage(2 ways):
+			1.assignment
+				after define the function:	
+					fun = staticmethod(fun)
+			2.decorator
+				before define the function use decorator(@...):
+					@classmethod
+					def fun(cls,...):
+						pass	
+
+	调用(静态方法/类方法)：
+		静态方法:
+			class.static-method(args)
+			instance.static-method(args)
+		类方法：
+			class.class-method(args)
+			instance.method(args)
 '''
 
 def globalfun():
@@ -41,7 +50,7 @@ class StM():
 
 	
 	@classmethod
-	def foo(cls):	# 至少得有一个变量，否则不能类方法化
+	def foo(cls):	# 至少得有一个变量接收类，否则不能类方法化
 		print '\tfoo(%s)' % cls
 	
 	#foo = classmethod(foo)	#调用时解释器自动将类传给foo的第一个参数

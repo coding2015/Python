@@ -5,7 +5,7 @@ class
 --------------------------------------------------------------------------------
 "List of class-type attribute"
 
-T.__new__(S, ...)	 #创建类S的新对象, S为T的子类
+T.__new__(cls, ...)	 #创建类cls的新对象, S为T的子类
 					 #eg float.__new__(cls)
 
 
@@ -18,3 +18,7 @@ T.__new__(S, ...)	 #创建类S的新对象, S为T的子类
 						#在子类定义的方法中
 							# pclass.method(self, args)
 							# 或: super(cclass,self).method(args)
+实例方法		#方法需绑定或传入实例， 绑定方式中由解释器自动传入实例对象
+					#eg: __init__(self),  myfun(self)
+类方法			#方法需需绑定或传入类， 绑定方式中由解释器自动传入
+					#eg:__new__(cls),  @classmethod \ def fun(cls, ...):pass

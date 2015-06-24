@@ -27,7 +27,7 @@ enumerate(iterable, count=0) -> enumerate-obj
 reversed(seq) -> seq
 sorted(iterable, cmp=None, key=None, reverse=False)
 zip(seq1, seq2, seq3, ...)
-
+next(iter[,default])	#返回迭代器但下一个值，若无值报异常或返回default
 
 repr(val/cmd) or `val/cmd` -> value of val/cmd
 open(fname, mode='r', buffering=-1)	# 打开文件， 默认：读方式，使用系统缓冲机制
@@ -86,6 +86,12 @@ delattr(obj, attr) == `del obj.attr`
 			round(n):四舍五入，取最接近n的整数（浮点数类型）
 					n>0时，四舍<n,五入>n
 					n<0时，四舍>n.五入<n
+	Problem:
+		边界值末位为5时，有时进位，有时舍位
+			>>> round(1.355, 2)
+			1.35
+			>>> round(1.365, 2)
+			1.36
 	'''
 * vars()  dir()
 	'''

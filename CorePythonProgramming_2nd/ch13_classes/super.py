@@ -67,6 +67,10 @@ class P2(Base2):
 	def staticFun():
 		print 'P2.staticFun() called'
 
+	@classmethod
+	def classFun(cls):
+		print 'P2.classFun(%s) called' % cls
+
 class C(P, P2):
 	def fun1(self):
 		print 'C.fun1(%s)'% self.__class__.__name__
@@ -79,9 +83,10 @@ class C(P, P2):
 		super(C, self).fun2(data)
 		super(C, self).fun3()
 		
-		super(C).staticFun() #Error
+		#super(C).staticFun() #Error
 			#AttributeError: 'super' object has no attribute 'staticFun' 
 	
+		super(C, self).classFun()
 
 print 'unbound call:'
 ct = C()

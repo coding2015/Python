@@ -1,2 +1,15 @@
 chapter 13:
 	Object-Oriented Programming
+
+
+Questions:
+	1. 为何在init中不允许返回对象或数值(只能返回None)
+		TypeError: __init__() should return None, not 'Time60'
+
+
+
+KeyPoints:
+
+	Customization:
+		__repr__():	
+			交互模式时，创建无引用实例或输入实例名时将显示其值
