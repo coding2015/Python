@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+判断实例类型的方法：
+1. if type(12) is int
+2. if type(12) == int
+3. isinstance(12, int)
+		isinstance(obj, (int, long, float, complex))
+
+
+is 实质：比较的是两者的id
+obj1 is obj2
+等同于： id(obj1) == id(obj2)
+
+
+任意对象都有 id
+id(type)
+id(int)
+id(obj)
+
