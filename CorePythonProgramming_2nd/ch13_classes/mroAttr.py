@@ -4,6 +4,9 @@
 Multiple Inheritance:
 	Method Resolution Order (MRO)
 
+KeyWord:
+	Attribute
+
 KeyPoint:
 	new-style-class.__mro__   查看新类的搜索顺序
 '''

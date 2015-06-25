@@ -9,6 +9,10 @@ call parent's method from child
 	2.	in C.method:
 			super(C, self).method()	#比1先进之处，不需交代基类名
 									#即使修改了继承关系, 这里也不需改动
+keyword:
+	BIF
+	inheritance
+
 KeyPoint:
 	super(type, instance).method(args)	
 		super()找不到调用父类的静态方法
