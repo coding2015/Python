@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+模块名(文件名)不能有'-', 否则无法导入，导入时视为语法错误
+
+>>> import algorithm-insert
+  File "<stdin>", line 1
+    import algorithm-insert
+                    ^
+SyntaxError: invalid syntax
+
+
+所以模块名(文件名)的命名规则应同标识符？
