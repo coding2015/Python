@@ -4,6 +4,9 @@
 不可变静态变量
 	类的不可变静态变量只能通过类更新，
 	由实例来更新或设定静态变量，则对该实例而言，新属性被创建而类的静态变量被遮蔽
+
+keyword:
+	immutable static member
 '''
 
 class C(object):
