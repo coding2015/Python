@@ -1,0 +1,22 @@
+#!/usr/bin/python
+
+>>> bool(0)
+False
+>>> bool(0.0)
+False
+>>> bool(0.00)
+False
+>>> bool(0.0000)
+False
+>>> bool(None)
+False
+>>> bool('')
+False 
+>>> bool([])
+False
+>>> bool({})
+False
+>>> bool(())
+False
+>>> 
+
