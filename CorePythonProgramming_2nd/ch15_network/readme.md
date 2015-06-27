@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 chapter 15:
 		network programming
 
