@@ -13,31 +13,45 @@ Problem-solved:
 	use less codes to implement descending or ascending sort
 Solving:
     reverse_sorting_list = sorted_list.reverse() or reversed(sorted_list)
-    so in the end of Bubble(), add:
+    so in the end of bubble(), add:
     if reverse:
     	a.revered()
 
 Further Problem:
-	deep-copy value to Bubble 
+	deep-copy value to bubble 
 '''
 
-def Bubble(a, reverse=False):
-	n = len(a)
-	for i in range(n):
-		exchanged = False
-		for j in range(n-1, i, -1):
-			if a[j] < a[j-1]:
-				temp = a[j]
-				a[j] = a[j-1]
-				a[j-1] = temp
-				exchanged = True
-		if exchanged == False:
-			break
-	if reverse:
-		a.reverse()
+def bubble(a, reverse=False):
+	N = len(a)
+	if not reverse:
+		for i in range(N):
+			exchanged = False
+			for j in range(N-1, i, -1):
+				if a[j] < a[j-1]:
+					temp = a[j]
+					a[j] = a[j-1]
+					a[j-1] = temp
+					exchanged = True
+			if exchanged == False:
+				break
+	else:
+		for i in range(N-1):
+			exchanged = False
+			for j in range(N-1, i, -1):
+				if a[j] > a[j-1]:
+					temp = a[j-1]
+					a[j-1] = a[j]
+					a[j] = temp
+					exchanged = True
+			else:
+				if exchanged == False:
+					break	
 
+	return a
+
+	
 def main():
-	print Bubble.__doc__
+	print bubble.__doc__
 	n = int(raw_input('how many elements?> '))
 	a = []	
 	#for i in n: #error: n is a number, it's not iterable 
@@ -56,7 +70,7 @@ Please enter choich> '''
 		reverse = False
 	print 'befor sort:'
 	print a
-	Bubble(a,reverse)
+	bubble(a,reverse)
 	print 'after sort:'
 	print a
 

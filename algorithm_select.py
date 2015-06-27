@@ -14,29 +14,37 @@ select algorithm:
 	so the time complextion is: 0(n^2), same as bubble algorithm
 '''
 
-def Select(a, reverse=False):
+def select(a, reverse=False):
 	N = len(a)
-	for i in range(N):
-		Min = i		#record the smaller obj's position
-		for j in range(i+1,N):
-			if a[j] < a[Min]:
-				Min = j
+	if not reverse:
+		for i in range(N):
+			Min = i		#record the smaller obj's position
+			for j in range(i+1,N):
+				if a[j] < a[Min]:
+					Min = j
 
-		if Min != i:
-			temp = a[i]
-			a[i] = a[Min]
-			a[Min] = temp
-
-	if reverse:
-		a.reverse()
-
-
+			if Min != i:
+				temp = a[i]
+				a[i] = a[Min]
+				a[Min] = temp
+	else:
+		for i in range(N-1):
+			Max = i
+			for j in range(i,N):
+				if a[j] > a[Max]:
+					Max = j
+			if Max != i:
+				temp = a[i]
+				a[i] = a[Max]
+				a[Max] = temp
+	return a
+	
 def test():
 	l = [8,7,5,9,3,2,4,6,1]
 	print 'before sort:\n',l
-	Select(l)
+	select(l)
 	print 'ascending sorted:\n', l
-	Select(l,True)
+	select(l,True)
 	print 'descending sorted:\n',l
 	
 
