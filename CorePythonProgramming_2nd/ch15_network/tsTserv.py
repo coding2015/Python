@@ -19,7 +19,7 @@ BUFSIZ = 1024
 
 tcpSerSock = socket()	#创建套接字，socket参数取其默认值
 
-tcpSerSock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)	
+#tcpSerSock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)	
 		#在未解除绑定的情况(比如服务器退出而客户端未退出)，重新运行服务器会报错
 		#socket.error: [Errno 98] Address already in use
 		#需在约5分钟内系统才清除绑定，释放端口资源
@@ -43,12 +43,16 @@ while True:
 		while True:
 			data = tcpCliSock.recv(BUFSIZ) #等待客户发送数据
 			if not data:
-				break
+				break	 #problem, 隐患，按此设计，break后不会关闭套接字
 			else:
 				tcpCliSock.send('[%s] %s' % (ctime(), data)) #返回数据给客户
 		tcpCliSock.close()
 	except (EOFError, KeyboardInterrupt): #ctrl+d 无反应，why? 
 										#ctrl+d正常， 客户端对此异常有反应
+		if 'tcpCliSock' in vars():
+			print 'close tcpClient'
+			tcpCliSock.close()	#试验了重复关句柄(socket,file)没有异常								#Problem:是否存在可以判断socket已关闭的方法
+					#另外，即使在此关闭了客户端套接字，但连接仍未断开，why?	
 		tcpSerSock.close()
 		break
 

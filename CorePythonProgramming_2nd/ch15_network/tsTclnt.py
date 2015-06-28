@@ -33,5 +33,8 @@ while True:
 			break
 		print data
 	except (EOFError, KeyboardInterrupt):
-		tcpCliSock.close()
 		break	# 跳出死循环
+
+
+tcpCliSock.close() #when-break and except-break
+
