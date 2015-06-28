@@ -1,0 +1,50 @@
+#!/usr/bin/python
+
+chapter 10:
+	Errors and Exceptions
+
+
+----------------------------------------------------
+
+'异常类'
+
+__builtin__.object(exception-classes):
+	-BaseException
+		|-KeyboardInterrupt
+		|-SystemExit
+		|-GeneratorExit
+		|-Exception
+			|-StopIteration
+			|-Warning
+				...
+			|-StandardError
+				|-EOFError
+				|-ValueError
+				...
+
+#注：可'$ pydoc exceptions' 查看完整信息
+
+EOFError: (ctrl+d)，引发异常时不带异常信息
+KeyboardInterrupt: (ctrl+c), 引发异常时不带异常信息	
+
+-------------------------------------------------------
+
+'捕获异常'
+
+try-except-else-finally
+	try-except
+		try: pass
+		except (xxxError, ...)[,reason]: pass
+	
+	try-except 捕获所有异常 
+		1.裸except（不能带原因参数）
+			try: pass
+			except: pass
+		2.异常根类（可带原因参数）
+			try: pass
+			except BaseException[,reason]: pass
+
+	try-except1-except2-...
+	try-except-else
+
+
