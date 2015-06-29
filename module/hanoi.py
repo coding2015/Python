@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#coding:utf-8
 
 '''
 hanoi question:
@@ -11,25 +12,27 @@ hanoi question:
 '''
 moves = 0
 
-def Move(a,c,n):
+def move(a,c,n):
 	print '%d:%c-->%c' % (n, a, c)
 	global moves  #!neccessary to declare before assignment
 				  	# otherwise it will produce UnbondLocalError
 					# because of conflict between global and local vals
 	moves += 1
 
-def Hanoi(a,b,c,n):
+#def hanoi(a='A',b='B',c='C',n): #递归函数的参数不能设置默认值
+def hanoi(a, b, c, n):
+	"move n plates from A seat to C seat by B seat"
 	if n>1:
-		Hanoi(a,c,b,n-1)
-		Move(a,c,n)
-		Hanoi(b,a,c,n-1)
+		hanoi(a,c,b,n-1)
+		move(a,c,n)
+		hanoi(b,a,c,n-1)
 	else:
-		Move(a,c,n)
+		move(a,c,n)
 
 
 def main():
 	n = int(raw_input('enter the total number of plates> '))
-	Hanoi('A','B','C',n)
+	hanoi('A','B','C',n)
 	print 'moves:',moves
 
 if __name__ == '__main__':
