@@ -1,16 +1,18 @@
 'break in try-block'
 
-def f():
-    while True:
-        try:
-            break
-        finally:
-            print 'finally'
-                          
- 
->>> f()
+while True:
+    try:
+        break
+		1/0
+	except:
+		print 'except'
+	else:
+		print 'else'
+    finally:
+        print 'finally'
+                      
+'''
 finally
-
-
+'''
 
 
