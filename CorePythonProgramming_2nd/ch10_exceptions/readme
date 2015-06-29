@@ -39,12 +39,42 @@ try-except-else-finally
 	try-except 捕获所有异常 
 		1.裸except（不能带原因参数）
 			try: pass
-			except: pass
+			except: reason = sys.exc_info()
 		2.异常根类（可带原因参数）
 			try: pass
 			except BaseException[,reason]: pass
 
-	try-except1-except2-...
-	try-except-else
+	try-except1-except2-...-else-finally
+
+------------------------------------------------------
+
+'with statement'
+'try-except-finally 简化版'
+
+	with EXPR [as VAR]:
+		BLOCK
+
+等价于：
+	mgr = (EXPR)
+	exit = type(mgr).__exit__
+	value = type(mgr).__enter__(mgr)
+	exc = True
+	try:
+		try:
+			VAR = value # if 'as VAR' is present
+			BLOCK
+		except:
+			exc = False
+			if not exit(mgr, *sys.exc_info()):
+				raise
+	finally:
+		if exc:
+			exit(mgr, None, None, None)
+--------------------------------------------------------
+
+'相关'
+
+exceptions module
+sys.exc_info()
 
 

@@ -33,6 +33,5 @@ d = dict(**kwargs)	#k1, k2, ... 之后会自动给转换为字符串
 							#dict(k=1,y=3,z=8) ->  {'y': 3, 'k': 1, 'z': 8}
 d = dict(seq(seq(2-tuples)))  #dict([('k1',33), ('k2',5),('k3',9)]) ->
 								#{'k3': 9, 'k2': 5, 'k1': 33}
-d = dict(mapping)   #???
-
+d = dict(zip(seq1,seq2))
 
