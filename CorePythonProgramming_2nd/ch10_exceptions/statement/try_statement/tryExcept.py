@@ -1,3 +1,5 @@
+'try-except'
+
 try:
 	float('er')
 except (ValueError, TypeError), e:

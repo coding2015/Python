@@ -1,3 +1,5 @@
+'continue in try-block'
+
 while True:
 	try:
 		continue

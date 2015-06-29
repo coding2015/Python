@@ -1,10 +1,8 @@
-"finally's exception overwrite former exception"
+"finally's exception overwrite the former exception"
 
 try:
 	try:
 		float('er')
-	except ValueError, e:
-		print 'inner error:\t', e
 	finally:
 		1/0
 except BaseException,e:
@@ -12,6 +10,5 @@ except BaseException,e:
 
 
 '''
-inner error:	could not convert string to float: er
 out error:	integer division or modulo by zero
 '''

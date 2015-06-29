@@ -1,4 +1,4 @@
-"exception lost"
+"exception lost due to return in finally-block"
 
 def f():
 	try:

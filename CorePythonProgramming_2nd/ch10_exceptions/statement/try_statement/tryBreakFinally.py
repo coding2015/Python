@@ -1,3 +1,5 @@
+'break in try-block'
+
 def f():
     while True:
         try:

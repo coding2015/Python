@@ -1,3 +1,7 @@
+'''
+异常分类处理
+'''
+
 try:
 	float([1])
 	#1/0
@@ -10,8 +14,6 @@ except BaseException, e:
 '''
 specify error: float() argument must be a string or a number
 '''
-
-
 '''
 other error: integer division or modulo by zero
 '''

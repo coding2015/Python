@@ -1,4 +1,4 @@
-"exception lost"
+"exception lost due to break in finally-block"
 
 while True:
 	try:

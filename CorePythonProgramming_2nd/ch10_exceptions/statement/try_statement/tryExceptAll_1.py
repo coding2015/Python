@@ -1,3 +1,5 @@
+'catch all exceptions'
+
 try:
 	1/0
 except BaseException, e:

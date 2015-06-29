@@ -1,3 +1,5 @@
+'try-finally: discard exception'
+
 def fun():
     try:
         x = 1/0
