@@ -48,28 +48,17 @@ try-except-else-finally
 
 ------------------------------------------------------
 
-'with statement'
-'try-except-finally 简化版'
+'with statement' 
+	等价于 try-except-finally, 并回收资源
+	仅作用于支持上下文协议的对象
 
-	with EXPR [as VAR]:
+	with mgr [as VAR]:
 		BLOCK
 
-等价于：
-	mgr = (EXPR)
-	exit = type(mgr).__exit__
-	value = type(mgr).__enter__(mgr)
-	exc = True
-	try:
-		try:
-			VAR = value # if 'as VAR' is present
-			BLOCK
-		except:
-			exc = False
-			if not exit(mgr, *sys.exc_info()):
-				raise
-	finally:
-		if exc:
-			exit(mgr, None, None, None)
+	# mgr：支持上下文管理的对象， eg: file, thread.LockType
+	# contextMgr 相关信息： ./statement/with_contextmgr.py
+	# contextMgr 相关系统模块： contextlib
+
 --------------------------------------------------------
 
 '相关'

@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+error examples for Exception, mainly standard exception
+
+-------------------------------------------------
+
+'异常类'
+
+__builtin__.object(exception-classes):
+    -BaseException
+        |-KeyboardInterrupt
+        |-SystemExit
+        |-GeneratorExit
+        |-Exception
+            |-StopIteration
+            |-Warning
+                ...
+            |-StandardError
+                |-EOFError
+                |-ValueError
+                ...
+
+-------------------------------------------------

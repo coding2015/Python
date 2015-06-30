@@ -20,36 +20,27 @@ class GeneratorContextManager(object):
 		self.gen = gen
 	
 	def __enter__(self):
-		print '__enter__'
 		try:
 			return self.gen.next()
 		except StopIteration:
 			raise RuntimeError("generator didn't yield")
 
 	def __exit__(self, type, value, traceback):
-		print '__exit__:', (type, value, traceback)
 		if type is None:
 			try:
-				print 'None: next'
 				self.gen.next()
 			except StopIteration:
-				print 'None: except return None'
 				return
 			else:
-				print 'None: else raise'
 				raise RuntimeError("generator didn't stop")
 		else:
 			try:
-				print 'notNone: throw'
 				self.gen.throw(type, value, traceback)
-				print 'notNone: throw end'
 				raise RuntimeError("generatot didn't stop after throw()")
 			except StopIteration:
-				print 'notNone: except return True'
 				return True
 			except:
 				if sys.exc_info()[1] is not value:
-					print 'notNone: except raise'
 					raise
 
 def contextmanager(func):
@@ -65,14 +56,11 @@ def opened_w_error(filename, mode='r'):
 	try:
 		f = open(filename, mode)
 	except IOError, e:
-		print 'return IOError'
 		yield None, e
 	else:
 		try:
-			print 'return file obj'
 			yield f, None
 		finally:
-			print 'close file'
 			f.close()
 
 '''
