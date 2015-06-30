@@ -46,7 +46,7 @@ def main():
 		f.retrbinary('RETR %s' % FILE, loc.write)
 	except IOError, e:	# there are possible error may raise during open and write
 		print 'IOError:\t', e
-		loc.close()
+	 	if loc: loc.close()
 	except ftplib.error_perm, e:
 		print 'ERROR: cannot read file "%s"' % FILE
 		print 'e:\t', e
