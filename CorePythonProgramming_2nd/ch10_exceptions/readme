@@ -3,9 +3,19 @@
 chapter 10:
 	Errors and Exceptions
 
+---------------------------------------------------
+'为什么使用异常'
+
+	简化代码， 简化整个错误管理体系
+	封存和保管原始错误
+	资源回收
+	平滑用户体验
+	
+	如果没有异常体系：
+		乏味的错误多层次传播及管理，并且原始错误会被曲解
+		失控，数据丢失
 
 ----------------------------------------------------
-
 '异常类'
 
 __builtin__.object(exception-classes):
@@ -28,27 +38,35 @@ EOFError: (ctrl+d)，引发异常时不带异常信息
 KeyboardInterrupt: (ctrl+c), 引发异常时不带异常信息	
 
 -------------------------------------------------------
-
 '捕获异常'
-
-try-except-else-finally
-	try-except
-		try: pass
-		except (xxxError, ...)[,reason]: pass
+'try-statement'
 	
-	try-except 捕获所有异常 
-		1.裸except（不能带原因参数）
-			try: pass
-			except: reason = sys.exc_info()
-		2.异常根类（可带原因参数）
-			try: pass
-			except BaseException[,reason]: pass
+	try:
+		try_suite
+	except Exception1:
+		handle_for_exception
+	except (Exception2, Exception3), reason:
+		handle_for_exception_2_and_3_plus_reason
+	except:
+		handle_for_other_exceptions
+	else:
+		no_exceptions_detected_suite
+	finally:
+		always_excute_suite
 
-	try-except1-except2-...-else-finally
+-------------------------------------------------------
+'通过sys模块获取异常信息'
 
-------------------------------------------------------
+	sys.exc_info() -> (type, value, traceback)
+										# 返回当前代码块最近触发的异常信息
+	type:		# 异常类
+	value:		# 异常类实例
+	traceback:	# 追踪(traceback)对象, 提供异常的上下文信息
 
+-------------------------------------------------------
+'上下文管理'
 'with statement' 
+
 	等价于 try-except-finally, 并回收资源
 	仅作用于支持上下文协议的对象
 
@@ -60,10 +78,50 @@ try-except-else-finally
 	# contextMgr 相关系统模块： contextlib
 
 --------------------------------------------------------
+'触发异常(主动)'
+'raise statement'
 
-'相关'
+	raise [SomeException [, args[, tracecback]]]
 
-exceptions module
-sys.exc_info()
+	raise	#引发当前代码块最近触发的一次异常，若之前无异常则报错TypeError
+	raise exclass 
+	raise exclass()
+	raise exclass, args	
+	raise exclass(args)	
+	raise exclass, args, traceback-obj
+	raise exclass, instance	# raise instance 或 raise exclass(instance)
+	raise instance 
+
+	eg:
+	raise IOError
+	raise IOError, (34, 'file no exist', 'xxx')
+	raise IOError(34, 'file no exist', 'xxx')
+	raise IOError, ('file not opened for writing'), traceback-obj
+
+	raise E, V, T
+	等价于：
+	e = E(V)
+	e.__trace__ = T
+	raise e
+
+--------------------------------------------------------
+'断言'
+'assert statement'
+
+	assert expr[, args]
+
+	等价于：
+	if __debug__ and not expr:
+		raise AssertionError [, args]
+
+	注：
+	__debug__ 默认情况为 True, 除非开启优化模式($ python -O), 不能人为赋值
+
+--------------------------------------------------------
+'相关模块'
+
+exceptions	# 内建异常
+sys.exc_*	# 异常相关信息
+contextlib	# 上下文管理对象工具
 
 
