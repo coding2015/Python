@@ -73,9 +73,9 @@ KeyboardInterrupt: (ctrl+c), 引发异常时不带异常信息
 	with mgr [as VAR]:
 		BLOCK
 
-	# mgr：支持上下文管理的对象， eg: file, thread.LockType
-	# contextMgr 相关信息： ./statement/with_contextmgr.py
-	# contextMgr 相关系统模块： contextlib
+	# mgr：支持上下文管理的对象， eg: 系统类型：file, thread.LockType，etc.
+	# 自定义上下文管理器： ./statement/with_contextmgr.py
+	# 上下文管理工具： contextlib module
 
 --------------------------------------------------------
 '触发异常(主动)'
