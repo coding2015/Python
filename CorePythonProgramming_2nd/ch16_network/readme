@@ -1,0 +1,86 @@
+#!/bin/usr/python
+
+chapter 16:
+		network programming
+
+---------------------------------------------------
+'套接字'
+	计算机网络数据结构， 通讯端点， 插座
+	
+	套接字地址家族(Python 支持)：
+		AF_UNIX, AF_INET, AF_NETLINK
+	
+	套接字地址(主机与端口)：
+		(host, port)	#eg: ('localhost', 22566), ('127.0.0.1', 22655)
+		port范围：
+			[0, 65535] 
+			Port numbers are assigned in various ways, based on three ranges: 
+			System Ports (0-1023), 
+			User Ports (1024-49151), 
+			and the Dynamic and/or Private Ports (49152-65535)
+			参考： /etc/services 或  http://www.iana.org/assignments/port-numbers
+	
+	套接字类型
+		1.面向连接(流套接字/虚电路)：
+			在通讯之前必须建立连接
+			顺序的，可靠的，不重复，无边界(数据可拆分)
+			协议: TCP/IP
+		2.无连接(数据报)
+			通讯不需建立连接
+			无序，不可靠，可重复，有边界(数据不可拆分)
+			协议：UDP/IP
+
+--------------------------------------------------
+'网络编程'
+'socket module':
+
+'common functions'
+	服务端
+	bind(addr)		# 绑定地址(host, port)到套接字
+	listen(backlog)	# 开始TCP监听，backlog:允许同时监听的连接数
+	accep(self) -> (socket-obj, addr-info)	# 阻塞式等待TCP连接
+
+	客户端
+	connect(addr)	# 主动初始化连接TCP服务器
+	connect_ex(addr)# 同connect()， 但出错时不报异常而是返回错误码
+
+	公用
+	socket(family=AF_INET, type=SOCK_STREAM, protocol=0) -> socket object
+										# 创建套接字
+	recv(buflen[, flags]) -> data(str)	# 接收TCP数据
+	send(str[, flags])					# 发送TCP数据
+	sendall(str[, flags]) 				# 完整发送TCP数据，实际在分包调用send()
+	recvfrom(buflen[, flags]) -> (data, addr(sender))	# 接收UDP数据
+	sendto(data[, flags], addr)			# 发送UDP数据
+	close()		#关闭套接字
+
+'TCP-服务器伪代码'
+	ss = socket()	# 创建服务器套接字
+	ss.bind()		# 把地址绑定到套接字上
+	ss.listen()		# 监听连接
+	inf_loop:		# 服务器无限循环
+		cs = ss.accept()	# 接受客户的连接
+		comm_loop:			# 通讯循环
+			cs.recv/cs.send()	# 对话(接收与发送到客户端)
+		cs.close()			# 关闭客户端套接字
+	ss.close()		# 关闭服务器套接字
+
+'TCP-客户端伪代码'
+	cs = sockets()	# 创建客户端套接字
+	cd.connect()	# 尝试连接服务器
+	comm_loop:		# 通讯循环
+		cd.send()/cs.recv()	# 对话(发送/接收)
+	cs.close()		# 关闭客户端套接字
+
+'UDP-服务器伪代码'
+	ss = socket()	# 创建服务器套接字
+	ss.bind()		# 绑定服务器套接字
+	inf_loop:		# 服务器无限循环
+		cs = ss.recvfrom()/ss.sendto()	# 对话(接收与发送)
+	ss.close()		# 关闭服务器套接字
+
+'UDP-客户端伪代码'
+	cs = socket()	# 创建客户端套接字
+	comm_loop:		# 通讯循环
+		cs.sendto()/cs.recvfrom()	# 对话（发送/接收）
+	cs.close		# 关闭客户端套接字
