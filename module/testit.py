@@ -14,7 +14,7 @@ Problem:
 	B = '%s' % `x`  
 		when x is a non-str: A==B
 		when x is a str: B has a pair of '' more than A
-	why?
+	why?: Because repr shows the origin data disgard the excape symbols
 '''
 
 

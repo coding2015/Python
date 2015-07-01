@@ -3,16 +3,89 @@
 chapter 11:
 	Functions and Functional Programming
 
+'difficulties'
+	回调函数
+	对象属性
 
-函数声明
-	在Python中，函数声明即函数定义
-	Python无类似C的函数声明(声明与定义分开)
+---------------------------------------------------
+'函数'
+		定义
+			结构化或过程化的编程方法， 代码重用， 输入输出	
+		
+		返回
+			[return]   	# 无return或单单return时，返回 None
+			return obj 	# 返回obj 
+			return obj1, obj2, ...	# 返回元组(obj1, obj2, ...)， 建议加上括号
+		
+		调用(操作符;())			
+			xxx([args])
 
+'函数定义(声明)'
+		def  xxx(): 
+			'function_documentation_string'
+			function_body
+				# 在Python中，函数声明即函数定义
+				# Python无类似C的函数声明(声明与定义分开)
 
-可变长参数
-	(位置参数， 关键字参数， 可变长参数元组， 可变长关键字字典)
-   （pos-args, kw-args, *args, **kwargs）	
+'函数属性'
+		__doc__		# 函数文档，函数里紧跟在函数声明后的字符串，可在函数定义后修改
+		__name__	# 函数名
+		__module__	# 函数所在模块
+		__class__	# 函数类型  == type(func)
+		xxxx		# 自定义属性，只能在函数外定义
 
+		属性访问：
+			help(func)	# 以文档方式显示函数声明及其文档
+			func.xxx
+
+' 函数参数'
+		传参(函数调用)：
+			func(val1, val2, ...)	
+			func(*tuple_nonkw_args, **dict_kw_args)
+			apply(func, args, kwargs)
+
+		可变长参数
+			(位置参数， 关键字参数， 可变长参数元组， 可变长关键字字典)
+		   （pos-args, kw-args, *args, **kwargs）	
+
+----------------------------------------------------
+'内部/内嵌函数'
+		在函数体内创建另一个函数
+
+'Closure 闭包'
+		对外部作用域(但不是全局作用域)的变量进行引用的内部函数
+		自由变量：定义在外部函数但由内部函数引用或使用的变量
+
+----------------------------------------------------
+
+'Decorator(装饰器)'
+		 decorator(func) -> function-obj
+		 #以一个函数对象为参数、并返回一个函数对象的函数
+
+		定义装饰器：
+			def deco(func):
+				decorating-block
+				return function-obj	 # 返回函数对象
+		用法：
+			@deco	# 在被修饰的函数定义前加修饰符，@decorator_funtion_name
+			def func(args):	pass
+			-> func = deco(func)
+			调用: func(args) ->  deco(fun)(args)
+
+			@deco1
+			@deco2
+			def func(args):pass
+			-> func = deco1(deco2(func))
+
+			@deco1(deco-args)	#此时deco1返回须是一个装饰器，否则无法装饰以下函数
+			@deco2
+			def func(args):pass
+			-> func = deco(deco-args)(deco2(func))
+
+		系统的装饰器： staticmethod, classmethod, etc.
+		参考: https://www.python.org/dev/peps/pep-0318/ 
+
+-----------------------------------------------------	
 lambda:
 	匿名函数
 	lambda args: expression
@@ -37,5 +110,5 @@ yield 语句：
 递归函数：
 	可以递归的必要条件：
 	有止
-	有返回
+
 	
