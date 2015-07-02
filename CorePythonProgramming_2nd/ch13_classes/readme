@@ -15,3 +15,11 @@ KeyPoints:
 	Customization:
 		__repr__():	
 			交互模式时，创建无引用实例或输入实例名时将显示其值
+
+---------------------------------------------------------------
+'class attributes'
+		
+		可调用类对象：
+			__call__(self, args) 
+				# 若定义了该属性, 则其实例可被调用
+				# instance(args) -> instance.__call__(args)

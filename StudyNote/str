@@ -33,9 +33,9 @@ rfind(sub, beg=0，end=len(str))		#查找字符串中sub的最高索引值,若�
 rindex(sub,beg=0, end=len(str))		#同rfind，但若不含sub报错ValueError
 rjust(width, fillchar=‘ ’)			#右对齐
 rpartition(sub)	#将字符串从右分成三部分'iwewey'.rpartition('w'): ('iwe','w','ey')
-rsplit(sep=whitespace, num=len.count(sep))	#从右按sep分割字符串
+rsplit(sep=whitespace, num=str.count(sep))	#从右按sep分割字符串
 rstrip(chars=whitespace)		#截去字符串右起(末尾)所有whitespace
-split(sep=whitespace, num=len.count(sep))	#从左按sep分割字符串
+split(sep=whitespace, num=str.count(sep))	#从左按sep分割字符串
 splitlines(keepends=False)		#按行分割，默认不保留换行符
 startswith(prefix, beg=0, end=len(str))		#检查字符串是否有前缀prefix
 strip(chars=whitespace)		#截去首尾所有whitespace

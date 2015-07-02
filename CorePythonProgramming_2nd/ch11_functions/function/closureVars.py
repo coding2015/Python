@@ -20,10 +20,13 @@ def f1():
 
 		clo = f3.func_closure	# 元组，f3的自由变量
 		if clo:
-			print 'f3.clo[%d]'% len(clo), clo
-			print 'f3 closure vars:', [str(c) for c in clo]
+			print 'f3.clo (%s) [%d]:\n\t'% (type(clo),len(clo)), clo
+			print 'clo[0] type:\n\t', type(clo[0])
+			print 'clo[0] dir:\n\t', dir(clo[0])
+			print 'cell_contents:', [c.cell_contents for c in clo]
 		else:
 			print 'no f3 closure vars'
+		print
 		f3()
 
 
@@ -50,13 +53,19 @@ f1()
 '''
 no f1 closure vars
 
-f2.clo[1] (<cell at 0x7fa01091d590: int object at 0x1cfec50>,)
-f2 closure vars: ['<cell at 0x7fa01091d590: int object at 0x1cfec50>']
+f2.clo[1] (<cell at 0x7f06d4a6f5c8: int object at 0x1a5bc50>,)
+f2 closure vars: ['<cell at 0x7f06d4a6f5c8: int object at 0x1a5bc50>']
 
-f3.clo[2] (<cell at 0x7fa01091d590: int object at 0x1cfec50>, <cell at 0x7fa01091d5c8: int object at 0x1cfec38>)
-f3 closure vars: ['<cell at 0x7fa01091d590: int object at 0x1cfec50>', '<cell at 0x7fa01091d5c8: int object at 0x1cfec38>']
-<int 'w' id=0x1cfec68 val=1>
-<int 'x' id=0x1cfec50 val=2>
-<int 'y' id=0x1cfec38 val=3>
-<int 'z' id=0x1cfec20 val=4>
+f3.clo (<type 'tuple'>) [2]:
+	(<cell at 0x7f06d4a6f5c8: int object at 0x1a5bc50>, <cell at 0x7f06d4a6f600: int object at 0x1a5bc38>)
+clo[0] type: 
+	<type 'cell'>
+clo[0] dir:
+	['__class__', '__cmp__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'cell_contents']
+cell_contents:[2, 3]
+
+<int 'w' id=0x1a5bc68 val=1>
+<int 'x' id=0x1a5bc50 val=2>
+<int 'y' id=0x1a5bc38 val=3>
+<int 'z' id=0x1a5bc20 val=4>
 '''

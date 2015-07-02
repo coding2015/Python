@@ -32,6 +32,7 @@ chapter 11:
 		__name__	# 函数名
 		__module__	# 函数所在模块
 		__class__	# 函数类型  == type(func)
+		func_closure# 函数独有属性，若函数为闭包函数则该属性为cell元组，否则为None
 		xxxx		# 自定义属性，只能在函数外定义
 
 		属性访问：
@@ -54,13 +55,27 @@ chapter 11:
 
 'Closure 闭包'
 		对外部作用域(但不是全局作用域)的变量进行引用的内部函数
-		自由变量：定义在外部函数但由内部函数引用或使用的变量
+		访问自由变量
+
+		自由变量：
+			定义在外部函数但由内部函数引用或使用的变量
+		    流浪作用域，封装的‘全局变量’
+
+		判断闭包函数
+			fun.func_closure 
+			若fun的func_closure属性不为 None, 说明fun是一个闭包函数
+
+		闭包函数属性
+			func_closure
+			xxx.func_closure -> tuple of cells
+						# 闭包的每一个自由变量对应一个cell
+						# 变量内容对应cell的cell_contents属性 
 
 ----------------------------------------------------
 
 'Decorator(装饰器)'
-		 decorator(func) -> function-obj
-		 #以一个函数对象为参数、并返回一个函数对象的函数
+		 decorator(func/class/obj) -> function-obj
+		 #返回一个函数对象的函数
 
 		定义装饰器：
 			def deco(func):
@@ -77,7 +92,7 @@ chapter 11:
 			def func(args):pass
 			-> func = deco1(deco2(func))
 
-			@deco1(deco-args)	#此时deco1返回须是一个装饰器，否则无法装饰以下函数
+			@deco1(deco-args)	#此时deco1可以不是装饰器，但其返回必须是装饰器
 			@deco2
 			def func(args):pass
 			-> func = deco(deco-args)(deco2(func))
@@ -86,6 +101,56 @@ chapter 11:
 		参考: https://www.python.org/dev/peps/pep-0318/ 
 
 -----------------------------------------------------	
+'generator 生成器'
+		函数的迭代化, 使函数可以通过next()‘逐步’操作
+	
+		创建生成器
+			1.函数法
+				在函数中加 yield 语句, 有多少个 yield 即有多少个迭代元素
+				def func(): 
+					...
+					yield statement1
+					...
+					yield statement2
+					...
+				func() -> generator
+				generator.next() -> statement1
+				generator.next() -> statement2
+				...
+			2.表达式法
+				(expr for iter_var in iterable if cond_expr) -> generator
+				eg:
+					gen = (x**2 for x in range(10))
+						等价于：
+						def __gen(iterable):
+							for x in iterable:
+								yield x**2
+						gen = __gen(iter(range(10)))
+		
+					max(len(line) for line in file if line.strip())
+					sum(x*x for x in range(10) )	
+					d = dict((k, func(k)) for k in keylist)
+					
+		生成器的方法:
+			next()	# 获得下次生成值
+			send(val) # 将值回送给生成器，作为yield语句的返回，并调用下一个yield
+			throw(exception) # exception句法同raise, 抛出异常并关闭生成器
+			close()	# 关闭生成器
+
+		yield statement:
+			仅用在函数中，用于构造生成器函数
+				yield 42
+				x = yield 42
+				x = 12 + (yield 42)
+			返回值：
+				gen.next(): yield state -> None (在两个 next()之间没有 send()时)
+				gen.send(val): yield state -> val 			
+
+		参考：
+		PEP342,  PEP0289
+
+-----------------------------------------------------
+
 lambda:
 	匿名函数
 	lambda args: expression
@@ -94,10 +159,6 @@ lambda:
 	
 	eg:
 		map(lambda x:x**2, range(10))
-
-
-yield 语句：
-	仅用在定义generator函数中
 
 
 函数式编程：
