@@ -1,0 +1,50 @@
+#!/usr/bin/python
+
+chapter18
+	Multithreaded Programming
+
+多线程编程:
+	由于单线程程序存在性能限制(尤其是有相互独立的、运行时间不确定的多个任务的程序)
+	把多个任务分隔成多个线程同时运行理论上会比顺序运行速度更快。
+	但由于python解释器是单线程的，故非所有程序都能从多线程中得到好处(有时反而更慢)
+----------------------------------------------------
+'thread module'
+	start_new_thread(func, *args, kwargs=None)	# 开始新线程
+	allocate_lock() -> lock object	# 创建锁
+	lock.acquire()			# 锁上锁
+	lock.release()			# 解锁	
+	lock.locked() -> bool	# 判断锁是否上锁
+	
+	不推荐该模块：
+		不支持守护线程：主线程退出时所有子线程都会被强行退出
+
+-----------------------------------------------------
+'threading module'
+		(recommand this module instead of thread module)
+
+'Thread class'
+		__init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None)		
+				# target: callable-obj, name: 线程名， args,kwargs: 传给target的参数
+				# 注：group参数用不上，传参时一般用关键字
+		start(self)		# 开始运行线程对象，其中调用了run()
+		run(self)		# 线程功能
+		join(timeout=None)	# 阻塞等待直到线程结束或timeout
+
+
+		比thread模块先进：
+			1.可控制和批量启动多线程, start()
+			2.不需管理一堆锁(分配，获得，释放，检查状态等)，只需join()
+		注意事项：
+			子类化Thread时，子类构造函数中要先调用基类构造函数	
+
+--------------------------------------------------------
+'Queue module'
+		队列， 数据结构， 多线程间数据共享
+		
+'Queue class'
+		__init__(slef, maxsize=0) 	# 初始化一个大小为maxsize的队列
+		qsize()	 	 # 返回队列大小(不可靠)
+		empty()	-> bool  # 队列为空返回True否则False(不可靠)
+		full() -> bool	 # 队列已满返回True否则False(不可靠)
+		put(item, block=True, timeout=None)	# 添加item到队列
+		get(block=True, timeout=None) -> item # 从队列中删除并返回item			
