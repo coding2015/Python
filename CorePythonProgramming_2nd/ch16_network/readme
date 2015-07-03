@@ -47,12 +47,17 @@ chapter 16:
 	公用
 	socket(family=AF_INET, type=SOCK_STREAM, protocol=0) -> socket object
 										# 创建套接字
-	recv(buflen[, flags]) -> data(str)	# 接收TCP数据
+	*recv(buflen[, flags]) -> data(str)	# 接收TCP数据
 	send(str[, flags])					# 发送TCP数据
 	sendall(str[, flags]) 				# 完整发送TCP数据，实际在分包调用send()
 	recvfrom(buflen[, flags]) -> (data, addr(sender))	# 接收UDP数据
 	sendto(data[, flags], addr)			# 发送UDP数据
 	close()		#关闭套接字
+
+	注意：
+	*recv() 阻塞式等待数据， 直到接收到数据或对方断开连接才罢休；
+			即使对方进行了send()操作，但若数据长度为0，也会一直处在阻塞中；
+			当对方断开连接, recv()停止等待，此时接收到的数据长度才是0。
 
 'TCP-服务器伪代码'
 	ss = socket()	# 创建服务器套接字

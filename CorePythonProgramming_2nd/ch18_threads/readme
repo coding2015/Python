@@ -7,9 +7,14 @@ chapter18
 	由于单线程程序存在性能限制(尤其是有相互独立的、运行时间不确定的多个任务的程序)
 	把多个任务分隔成多个线程同时运行理论上会比顺序运行速度更快。
 	但由于python解释器是单线程的，故非所有程序都能从多线程中得到好处(有时反而更慢)
+
+
+'Problems':
+	1.子线程无法捕获ctrl+c(只能由主线程捕获), 如何结束子线程
+
 ----------------------------------------------------
 'thread module'
-	start_new_thread(func, *args, kwargs=None)	# 开始新线程
+	start_new_thread(func, args[, kwargs])	# 开始新线程
 	allocate_lock() -> lock object	# 创建锁
 	lock.acquire()			# 锁上锁
 	lock.release()			# 解锁	
