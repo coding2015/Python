@@ -4,8 +4,7 @@ chapter 11:
 	Functions and Functional Programming
 
 'difficulties'
-	回调函数
-	对象属性
+	静态嵌套域
 
 ---------------------------------------------------
 '函数'
@@ -72,7 +71,6 @@ chapter 11:
 						# 变量内容对应cell的cell_contents属性 
 
 ----------------------------------------------------
-
 'Decorator(装饰器)'
 		 decorator(func/class/obj) -> function-obj
 		 #返回一个函数对象的函数
@@ -150,26 +148,63 @@ chapter 11:
 		PEP342,  PEP0289
 
 -----------------------------------------------------
+'函数式编程'
 
 lambda:
-	匿名函数
-	lambda args: expression
-	等同于：
-	def name(args):return expression
+		匿名函数
+		lambda args: expression
+		-> def func(args):return expression		
+		eg:
+			map(lambda x:x**2, range(10))
+
+
+函数式编程接口(BIF):
+		apply(func[, args][,kargs])	 # == func(*args, **kargs),  逐渐弃用
+		filter(func/None, seq) -> subseq # 返回子序列:items if func(item)
+		reduce(func, seq[,init]) -> val # func(seq[n],func(...func(init,seq[0]))))
+								 # len(*seq, init)=1, 则返回该元素，len=0则报错
+		map(func/None,seq1,seq2,..)-> list # [func(seq1[i],seq2[i],...), ...]
+							# map(None,seq1,seq2,...) == zip(seq1,seq2,...)
+
+列表解析:
+		[expr for iter_var in iterable if cond_expr]
+		可取代部分 lambda 和 函数式编程接口
+		eg: 
+			map(lambda x:x**2, range(10))
+				-> [x**2 for x in range(10)]
+			map(func, seq)
+				-> [func(x) for x in seq]
+			filter(func, seq)
+				-> [x for x in seq if func(x)]
+
+偏函数(partial-function):
+		functools.partial(func,*args, **kwargs) #固化func的参数值
+		eg:
+			add1 = partial(operator.add, 1)  # add1(x) == operator.add(1, x)
+			baseTwo = partial(int, base=2) # 转换二进制字符串
+									# baseTwo('1010') == int('1010', 2)
+											
+-------------------------------------------------------------
+'作用域'
+'静态嵌套域 Statically Nested Scopes'
+'闭包自由变量'
+		lambda 与作用域
+			>>> def foo():
+			...     y=5
+			...     bar = lambda:x+y
+			...     print bar()
+			...     y=8
+			...     print bar()
+			... 
+			>>> foo()
+			15
+			18
 	
-	eg:
-		map(lambda x:x**2, range(10))
+		参考：
+		PEP227
 
-
-函数式编程：
-	lambda
-	BIFs: apply(), filter(), reduce(), map()
-	偏函数：functools.partial(func,arg=val)
-	前两项部分可被列表解析替代 
-
-
-递归函数：
-	可以递归的必要条件：
-	有止
+----------------------------------------------------------------
+'递归函数'
+		自调, 有止
 
 	

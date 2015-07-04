@@ -2,8 +2,8 @@
 #coding:utf-8
 
 '''
-closure:
-	Example 11.8
+Example 11.8
+	closure, decorator
 '''
 
 from time import time

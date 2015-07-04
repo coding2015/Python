@@ -5,7 +5,7 @@ built-in functions
 
 函数式编程
 map(func, seq1,seq2,...) -> list  #返回序列的映射序列，序列个数==func参数个数
-reduce(func, seq, init=None) -> value	#func为二元函数
+reduce(func, seq[,init]) -> value	#func为二元函数
 filter(func, seq) ->subseq 	#返回子序列：items of func(item)==True 
 
 数值

@@ -7,7 +7,7 @@ chapter 13:
 Questions:
 	1. 为何在init中不允许返回对象或数值(只能返回None)
 		TypeError: __init__() should return None, not 'Time60'
-
+	2. _xx, __xx, __xx__ 私有变量
 
 
 KeyPoints:
