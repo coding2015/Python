@@ -44,7 +44,8 @@ class Time(object):
 	
 	__repr__ = __str__
 
-	#def update(self, t=time()): # 不能这么传默认值，在定义时值已定，调用时不会再赋值
+	#def update(self, t=time()): # 不能这么传默认值，在定义时值已定
+								 # 不会在调用时动态赋值 	
 	def update(self, t=None):
 		if not t: t = time()
 		self.time = t
