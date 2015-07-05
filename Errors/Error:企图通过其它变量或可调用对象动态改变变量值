@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+python是解释型语言
+采用其他变量或可调用对象对变量赋值时，此时变量值已定
+不会再因之后其他变量或调用对象的改变而改变
+	y = 10
+	x = y
+	print x	 # 10
+	y = 11
+	print x  # 10
+
+Error:
+def update(self, t=time()): # 不能这么传默认值，在定义时值已定，调用时不会再赋值
+    self.time = t
+
+
+Correct:
+def update(self, t=None):
+	if not t: t = time()
+     self.time = t
+
