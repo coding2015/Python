@@ -22,29 +22,57 @@ KeyPoints:
 	
 	
 		__str__(self):
-			返回字符串对象，'print 实例'时调用
+			返回字符串对象，'print 实例'或'str(实例)'时调用
 
 		__repr__(self)
-			返回字符串对象，'>>> 实例'或'repr 实例'或'`实例`'时调用
+			返回字符串对象，'>>> 实例'或'repr(实例)'或'`实例`'时调用
 			实现时可调用 repr() 或 `` 来取对象的原值
 
 		__call__(self, args) 
-			可调用类对象
+			可调用类对象, '实例()' 时调用
 			应用：线程注册对象
 			# 若定义了该属性, 则其实例可被调用
 			# instance(args) -> instance.__call__(args)
 
 		__getattr__(self, attr):
 			授权(delegation), 将已存在的功能授权给对象的默认属性
-			当解释器找不到当前实例的属性时，才调用该方法
-			应用: 包装标准类型，eg: 添加创建、修改、访问属性
+			当解释器找不到当前实例的属性和类属性时，才调用该方法
+			！该处的属性指ins.attr 句点方式访问的属性， repr(ins),str(ins)等不算
+			'应用: 包装标准类型，eg: 添加创建、修改、访问属性'
 			# 若覆盖(定义)该属性，可在定义中调用BIF：getattr(obj,attr)来实现授权
 			# 注意: 操作符如'[]','+'等不是属性，无法授权，可以通过返回对象的方式操作
+			# 多继承中属性的查找秩序见类属性__mro__
 
-		__getattribute__()
+		__getattribute__(self, attr)
+			新类属性，无论实例属性有无找到，都调用
+			即只要采用句点方式访问的属性都会调用该方法
+			# 注意：在该方法内采用self.xxx的方式会陷入无穷递归
+			# 若想在该方法内访问该实例的其他属性，
+					# 可通过super()调用父类的__getattribute__属性访问
+				super(class_name, instance).__getattribute__(attr)
+
+		__slots__
+			新类属性，规定限制实例属性，替代实例的__dict__属性, 节约内存
+			应用: 实例属性少但实例对象很多时，用__slots__替代__dict__可以明显节约内存
+			eg: __slots__ = 'version' # 规定实例只能定义 version 属性
+				__slots__ = ('foo', 'bar') # 规定实例只能定义 foo 和 bar 属性
+			# 定义了__slots__ 属性，就不再存在实例的__dict__属性
+
+		
+
 
 		隐藏属性：
 			'_'以单下划线打头
 				可以访问，但不从能模块中导出(from module import *)
 			'__'以双下划线打头
 				私有变量，此时类命名空间中该变量的名字不是__xxx, 而是'_类名__xxx'
+
+-----------------------------------------------------------------------
+'相关BIF/module'
+	super(type[, type2/obj]) -> super-obj # 代理授权访问父类属性， 只应用于新类
+		super(type) -> unbound super-obj 
+		super(type, type2) -> bound super-obj # 前提issubclass(type, type2)为真 
+												# 可应用于调用父类类方法
+		super(type, obj) -> bound super-obj	# 前提isinstance(obj, type)为真
+		可对返回值采用句点方式访问父类属性
+		多继承中查找顺序见类的__mro__属性
