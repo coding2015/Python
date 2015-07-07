@@ -49,7 +49,7 @@ KeyPoints:
 			# 注意：在该方法内采用self.xx 或type.__getattribute__的方式会陷入无穷递归
 			# 可通过以下方式避免
 				super(type, obj).__getattribute__(attr)
-				-> object/parent.__getattribute__(obj, attr)
+				== object/parent.__getattribute__(obj, attr)
 				按__mro__顺序从obj开始搜寻属性
 
 		__slots__
@@ -71,9 +71,11 @@ KeyPoints:
 	super(type[, type2/obj]) -> super-obj # 代理授权访问父类属性， 只应用于新类
 		super(type) -> unbound super-obj 
 		super(type, type2) -> bound super-obj # 前提issubclass(type, type2)为真 
-												# 可应用于调用父类类方法
 		super(type, obj) -> bound super-obj	# 前提isinstance(obj, type)为真
+		
 		可对返回值采用句点方式访问父类属性
 		super(type, type2/obj).attr
-		#注意：找的是xxx父类的属性（亦按__mro__进行搜寻，但掠过xxx及其继承者们）
+		#注意：找的是type的父类属性（亦按__mro__进行搜寻，但掠过type及其继承者们）
 		#且此时不会再去调用__getattribute__， 除非显示调用该属性
+		super(type, type2).method()	== type的父类.method(type2) #调用类方法
+		super(type, obj).method()	== type的父类.method(obj)	  #调用实例方法
