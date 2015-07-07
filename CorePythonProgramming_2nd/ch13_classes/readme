@@ -46,10 +46,11 @@ KeyPoints:
 		__getattribute__(self, attr)
 			新类属性，无论实例属性有无找到，都调用
 			即只要采用句点方式访问的属性都会调用该方法
-			# 注意：在该方法内采用self.xxx的方式会陷入无穷递归
-			# 若想在该方法内访问该实例的其他属性，
-					# 可通过super()调用父类的__getattribute__属性访问
-				super(class_name, instance).__getattribute__(attr)
+			# 注意：在该方法内采用self.xx 或type.__getattribute__的方式会陷入无穷递归
+			# 可通过以下方式避免
+				super(type, obj).__getattribute__(attr)
+				-> object/parent.__getattribute__(obj, attr)
+				按__mro__顺序从obj开始搜寻属性
 
 		__slots__
 			新类属性，规定限制实例属性，替代实例的__dict__属性, 节约内存
@@ -59,8 +60,6 @@ KeyPoints:
 			# 定义了__slots__ 属性，就不再存在实例的__dict__属性
 
 		
-
-
 		隐藏属性：
 			'_'以单下划线打头
 				可以访问，但不从能模块中导出(from module import *)
@@ -75,4 +74,6 @@ KeyPoints:
 												# 可应用于调用父类类方法
 		super(type, obj) -> bound super-obj	# 前提isinstance(obj, type)为真
 		可对返回值采用句点方式访问父类属性
-		多继承中查找顺序见类的__mro__属性
+		super(type, type2/obj).attr
+		#注意：找的是xxx父类的属性（亦按__mro__进行搜寻，但掠过xxx及其继承者们）
+		#且此时不会再去调用__getattribute__， 除非显示调用该属性

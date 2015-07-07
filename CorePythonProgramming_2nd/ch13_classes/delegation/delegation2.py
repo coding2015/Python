@@ -49,7 +49,7 @@ class Wrap2(object):
 
 	def	__getattribute__(self, attr):
 		#print '__getattrbute__(%s, %s)' % (self.__class__.__name__, attr)
-		#RuntimeError: again，似乎在此调用了self就会导致无限递归
+		#RuntimeError: 由self.__class__ 引起无限递归
 		print '__getattibute__, attr:', attr
 
 		#return getattr(self.datas, attr) #RuntimeError:无限递归, Why?

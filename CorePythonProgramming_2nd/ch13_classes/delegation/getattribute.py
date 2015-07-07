@@ -2,11 +2,11 @@
 #coding:utf-8
 
 '__getattrbute__ 属性只对新类起作用'
->>> class D:
-...     version = 1.0
-...     def __getattribute__(self, attr):
-...             print '__getattribute__(%s)' % attr
-... 
+class D:
+    version = 1.0
+    def __getattribute__(self, attr):
+            print '__getattribute__(%s)' % attr
+'''
 >>> D.version
 1.0
 >>> d = D()
@@ -31,7 +31,7 @@ __getattribute__(version)
 >>> a.x = 10
 >>> a.x
 __getattribute__(x)
-
+'''
 
 
 '在__getattribute__()中访问实例的其他属性'
