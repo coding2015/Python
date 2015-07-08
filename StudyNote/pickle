@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+'pickle module'
+
+# 读文件
+f = open('xxx','r')
+pickle.load(f) -> data; # exception: UnpicklingError
+
+# 写文件
+f = open('xxx', 'w')
+pickle.dump(data, f)	# exception: PicklingError
+
+Question:
+	读写文件为何不用 file 自身方法， 而要调用pickle模块方法
+
+
+Reference:
+	https://docs.python.org/2.7/library/pickle.html?highlight=pickle
+	http://blog.sina.com.cn/s/blog_54b14bb80100li1z.html
+
