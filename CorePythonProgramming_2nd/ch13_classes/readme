@@ -83,6 +83,9 @@ KeyPoints:
 			装饰器;
 				property(fget[, fset[, fdel[, doc]]]) -> property attribute
 
+		__metaclass__
+			新类属性，指定类模板(元类)
+
 
 		隐藏属性：
 			'_'以单下划线打头
