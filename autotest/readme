@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+'''
+unittest module'
+	The Python unit testing framework, also referred to as 'PyUnit', which is 
+a Python version of Junit(Java version of Kent's Smalltalk testing framework)
+
+'''
+
+---------------------------------------------------------------
+'test-fixtures 测试固件'
+		测试相关的准备工作和清理工作
+		基于类TestCase创建，方法：
+		setUp()		# 测试运行前调用
+		tearDown()	# 测试结束后调用
+
+'test-case 测试用例'
+		最小的测试单元，基于TestCase构建
+		多个测试用例可集中在一个类中定义:
+			class xxx(unittest.TestCase):
+				def testcase1(self):pass
+				def testcase2(self):pass
+				...
+		注: 自动运行用例(命令行或inittest.mian()方式)只识别'test'打头命名的用例
+
+'test-suite 测试用例集'
+		通过类TestSuite 包含测试用例(TestCase)或测试用例集(TestSuite)
+
+'test-runner 测试运行器'
+		类TestRunner
+		类TextTestRunner
+
+----------------------------------------------------------------
+'运行方式'
+'命令行'
+		运行一个模块里的测试用例：
+		$ python -m unittest -v module
+			# 自动实例化module中所有unittest.TestCase子类
+			# 自化运行所有test打头的方法(包括各个用例运行前后的test-fixture)
+
+'__main__入口'
+		$ python module.py 以__main__方式运行模块
+		通过 'unittest.main()' 实现同上个命令同样作用(但运行信息较少) 
