@@ -24,9 +24,7 @@ def select(a, reverse=False):
 					Min = j
 
 			if Min != i:
-				temp = a[i]
-				a[i] = a[Min]
-				a[Min] = temp
+				a[Min], a[i] = a[i], a[Min]
 	else:
 		for i in range(N-1):
 			Max = i
@@ -34,9 +32,7 @@ def select(a, reverse=False):
 				if a[j] > a[Max]:
 					Max = j
 			if Max != i:
-				temp = a[i]
-				a[i] = a[Max]
-				a[Max] = temp
+				a[Max], a[i] = a[i], a[Max]
 	return a
 	
 def test():

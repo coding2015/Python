@@ -28,30 +28,25 @@ def bubble(a, reverse=False):
 			exchanged = False
 			for j in range(N-1, i, -1):
 				if a[j] < a[j-1]:
-					temp = a[j]
-					a[j] = a[j-1]
-					a[j-1] = temp
+					a[j], a[j-1] = a[j-1], a[j]
 					exchanged = True
-			if exchanged == False:
+			if not exchanged:
 				break
 	else:
 		for i in range(N-1):
 			exchanged = False
 			for j in range(N-1, i, -1):
 				if a[j] > a[j-1]:
-					temp = a[j-1]
-					a[j-1] = a[j]
-					a[j] = temp
+					a[j], a[j-1] = a[j-1], a[j]			
 					exchanged = True
 			else:
-				if exchanged == False:
+				if not exchanged:
 					break	
 
 	return a
 
 	
 def main():
-	print bubble.__doc__
 	n = int(raw_input('how many elements?> '))
 	a = []	
 	#for i in n: #error: n is a number, it's not iterable 
@@ -68,7 +63,7 @@ Please enter choich> '''
 		reverse = True
 	else:
 		reverse = False
-	print 'befor sort:'
+	print 'before sort:'
 	print a
 	bubble(a,reverse)
 	print 'after sort:'

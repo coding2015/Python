@@ -1,0 +1,82 @@
+#!/usr/bin/python
+
+Pythonic化的两值化:
+	x, y = y, x
+	'''
+	>>> x, y
+	(2, 10)
+	>>> x, y = y, x
+	>>> x, y
+	(10, 2)
+	'''
+
+"'(x,y)=(y, x)' vs 通过中间变量交换"
+	（x,y)=(y, x)
+		更加简洁及pythonic化
+		性能优于中间变量的方式
+
+'性能比较'
+	'''
+	>>> from timeit import Timer
+	>>> Timer('temp=x;x=y;y=temp','x=2;y=3').timeit()
+	0.08102083206176758
+	>>> Timer('x,y=y,x','x=2;y=3').timeit()
+	0.06300091743469238
+	'''
+	(x,y)=(y,x) 比 中间变量方式 快
+	
+'之所以然'
+	# 反汇编中间变量交换方式
+	'''
+	>>> def swap2():
+	...     x = 2
+	...     y = 3
+	...     temp = x
+	...     x = y
+	...     y = x
+	... 
+	>>> import dis
+	>>> dis.dis(swap2)
+	  2           0 LOAD_CONST               1 (2)
+				  3 STORE_FAST               0 (x)
+
+	  3           6 LOAD_CONST               2 (3)
+				  9 STORE_FAST               1 (y)
+
+	  4          12 LOAD_FAST                0 (x)
+				 15 STORE_FAST               2 (temp)
+
+	  5          18 LOAD_FAST                1 (y)
+				 21 STORE_FAST               0 (x)
+
+	  6          24 LOAD_FAST                0 (x)
+				 27 STORE_FAST               1 (y)
+				 30 LOAD_CONST               0 (None)
+				 33 RETURN_VALUE        
+	'''
+
+	# 反汇编(x,y)=(y,x)
+	'''
+	>>> import dis
+	>>> def swap1():
+	...     x = 2
+	...     y = 3
+	...     x,y = y,x
+	... 
+	>> dis.dis(swap1)
+	  2           0 LOAD_CONST               1 (2)
+				  3 STORE_FAST               0 (x)
+
+	  3           6 LOAD_CONST               2 (3)
+				  9 STORE_FAST               1 (y)
+
+	  4          12 LOAD_FAST                1 (y)
+				 15 LOAD_FAST                0 (x)
+				 18 ROT_TWO             		
+				 19 STORE_FAST               0 (x)
+				 22 STORE_FAST               1 (y)
+				 25 LOAD_CONST               0 (None)
+				 28 RETURN_VALUE        
+	'''
+	后者以ROT_TWO 替代了前者的一对(LOAD_FAST + STORE_FAST)	
+	而ROT_TWO 比 (LOAD_FAST + STORE_FAST)快
