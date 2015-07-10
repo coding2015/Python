@@ -8,6 +8,7 @@ a Python version of Junit(Java version of Kent's Smalltalk testing framework)
 '''
 
 ---------------------------------------------------------------
+'基本概念'
 'test-fixtures 测试固件'
 		测试相关的准备工作和清理工作
 		基于类TestCase创建，方法：
@@ -40,4 +41,39 @@ a Python version of Junit(Java version of Kent's Smalltalk testing framework)
 
 '__main__入口'
 		$ python module.py 以__main__方式运行模块
-		通过 'unittest.main()' 实现同上个命令同样作用(但运行信息较少) 
+		通过 'unittest.main()' 实现同上个命令同样作用(但运行信息较少)
+
+----------------------------------------------------------------
+'TDD(Test Driven Development)'
+		测试驱动开发
+		敏捷开发，测试先行：
+			先编写测试代码，再在其基础上通过基本迭代完成编码，并不断完善
+		目的: 编写可用的、干净的代码 
+		好处: 改进的设计，可测性增强，更低的耦合度， 更强的质量信心，更低的修复代价
+
+----------------------------------------------------------------
+'拓展学习'
+		'test discover':
+			运行当前目录下所有名字以'test'打头模块的测试用例, 仅支持python2.7+
+			$ python -m unittest discover
+			以__name__==`module`方式运行，过程产生.pyc文件
+			
+		'setuptools':
+			可替代test-discover, 支持python2.7以下版本
+			类似MakeFile,通过创建编辑setup文件组织运行
+			运行过程产生xxx.egg-info相关文件
+			$ python setup.py test
+		https://setuptools.pypa.io/en/latest/index.html		
+
+		'nose':
+			改进的unittest测试框架，需另外安装
+			比unittest:
+				支持插件机制, eg: 统计测试覆盖
+				兼容但不限于unittest测试用例
+				Pythonic, 符合PEP8风格
+				提供不同层次的test-fixture方案
+				提供collector作为测试套件，统一unittest下测试套件不同的setup.py
+
+
+			
+			
