@@ -1,0 +1,109 @@
+#!/usr/bin/python
+
+chapter 15:
+		Regular Expressions
+
+Question:
+	1.如何匹配辅音 ([^aeiou]匹配所有非元音字符)
+	2.匹配不以0开头的数字序列
+		——无意义问题，re匹配的是写好的东西，而不是限制不合格的东西
+--------------------------------------------------------
+'正则表达式'
+'元字符'
+		由特殊字符来匹配字符串值
+		若要匹配这些元字符，则需加转义符\ 进行转义
+'基本字符'
+		.	# 匹配除'\n'外的任一个字符 
+		| 	# 或，匹配多个字符串
+		\d 	# 匹配数字，\D 相反
+		\w 	# 匹配数字和字母，\W 相反 
+		\s  # 匹配空白字符\S 相反
+'次数'
+		？	# 匹配前一个表达式字符0次或1次		
+		+	# 匹配1次或多次
+		*	# 匹配0次或多次
+		{N}	# 匹配N次
+		{N,M}	# 匹配N到M次，{,M} == {0,M}, {N,} == {N, infinite}
+		{N,M}? 	# 偷懒(非贪婪)匹配，试图匹配最少次数
+'范围'
+		[...]	# 匹配方括号内任一个字符
+		[x1-x2]	# 匹配按ascii排序的x1到x2间的任一个字符，ord(x2)>ord(x1)
+		[^...] 	# 不匹配方括号内的任一个字符
+'分组-访问匹配结果'
+		()	 # 分组
+		\num # 匹配已保存的分组, num为子组序数
+'位置匹配(主要用于search())'
+		^	# 匹配开头 
+		$ 	# 匹配结尾
+		\A	# 匹配开头
+		\Z	# 匹配结尾
+		\b  # 匹配单词头/尾， \B 相反
+---------------------------------------------------------
+'应用举例'
+		[_A-Za-z]\w*	# 匹配合法标识符
+		\d{3}-\d{3}-\d{-4}	#匹配电话号码(美国), eg:800-444-1212
+
+----------------------------------------------------------
+'re module'
+	compile(pattern, flags=0) -> regex-obj 
+'函数/regex-obj方法'
+	[re-obj.]match(pattern, string, flags=0) -> match-obj/None
+						# 从字符串起始处进行pattern匹配
+	[re-obj.]search(pattern, string, flags=1) -> match-obj/None
+						# 从左到右查找字符串中pattern首次出现的位置后再进行匹配
+	match-obj.group(num=0)  # 默认返回所有匹配对象, num表示分组序数
+	match-obj.groups() 	  # 返回由所有匹配对象组成的元组
+		'''
+		>>> m = re.match(r"(\w+) (\w+)", "Isaac Newton, physicist")
+		>>> m.groups()
+		('Isaac', 'Newton')
+		>>> m.group(0)
+		'Isaac Newton'
+		>>> m.group(1)
+		'Isaac'
+		>>> m.group(2)
+		'Newton'
+		>>> re.match('foo', 'food on the table').group() # 不分组也返回匹配对象
+		'foo'
+		>>> re.match('foo', 'seafood').group()	# match 从字符串起始处匹配
+		Traceback (most recent call last):
+		  File "<stdin>", line 1, in <module>
+		AttributeError: 'NoneType' object has no attribute 'group'
+		>>>
+		>>> re.search('foo','seafood').group() # search 找到后再匹配
+		'foo'
+		'''
+	findall(pattern, string，flags=0) -> list	# 返回所有匹配,search()只返回一个
+											# 若含子组则只返回子组构成的元组
+		'''		
+		>>> patt.findall('carry the barcardi to the car car') # 匹配所有
+		['car', 'car', 'car', 'car']
+		>>> patt.search('carry the barcardi to the car car').group() # 只匹配第一个
+		'car'
+		>>> re.findall('(a)\w+', 'chadec')	# 一个子组
+		['a']
+		>>> re.search('(a)\w+', 'chadec').group()
+		'adec'
+		>>> re.findall('(a)\w+(c)', 'chadec')	# 两个子组
+		[('a', 'c')]
+		>>> re.search('(a)\w+(c)', 'chadec').group()
+		'adec'
+		'''
+	sub(pattern, repl, string, flag=0) -> new-str  # 搜索并替换，repl:str/callable
+	sub(pattern, repl, string, flag=0) -> (new-str, num) # 返回元组，num为替换次数
+		'''
+		>>> re.sub('[ae]', 'X', 'acdefa')
+		'XcdXfX'
+		>>> re.subn('[ae]', 'X', 'acdefa')
+		('XcdXfX', 3)
+		'''
+	split(pattern, string, maxsplit=0, flags=0) -> list	# 分割字符串
+							# 类似str.split()， 但多了搜索匹配功能
+		'''
+		>>> re.split(':', 'str1:str2:str3')
+		['str1', 'str2', 'str3']
+		>>> 'str1:str2:str3'.split(':') # 此时等同于str.split()
+		['str1', 'str2', 'str3']
+		'''
+	
+
