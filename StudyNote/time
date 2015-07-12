@@ -4,7 +4,7 @@
 
 * time() -> float   # curtime
 * clock() -> float 	# cup time
-ctime(t=time()) -> str
+* ctime(t=time()) -> str
 gmtime(t=time()) -> time_struct
 
 
@@ -23,3 +23,14 @@ gmtime(t=time()) -> time_struct
 * time_struct
 	tm_year : 完整年数，若想显示后两位，可(tm_year % 100)
 
+* ctime([secs])
+	secs存在上限， 超出上限会报错:ValueError
+	'''
+	>>> time.ctime(69999999999999999)
+	Traceback (most recent call last):
+	  File "<stdin>", line 1, in <module>
+	ValueError: unconvertible time
+	>>> time.ctime(59999999999999999)	# 最大整数上限
+	'Sat May 29 18:40:00 1901326280\n'
+	'''
+ 

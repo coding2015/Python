@@ -49,8 +49,8 @@
 ... 
 ('\rend', '\tend', '\x0bend', '\x0cend')
 >>> m = re.match('(.end)*', '\rend\tend\x0bend\x0cend')	# 一个分组
->>> m.groups()				# 子组为最后一个匹配对象？
-('\x0cend',)
+>>> m.groups()				# 子组为最后一个匹配对象
+('\x0cend',)				# 原因: 子组数据被不断地替换成下一个匹配了的对象
 >>> m.group()
 '\rend\tend\x0bend\x0cend'
 >>>
