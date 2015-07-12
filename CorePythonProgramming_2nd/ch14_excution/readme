@@ -1,0 +1,69 @@
+#!/usr/bin/python
+
+chapter 14
+		Execution Environment
+
+---------------------------------------------------
+'可调用对象'
+		可通过函数操作符'()'调用的对象
+		函数， 方法， 类， 一些类实例
+		可通过BIF callable(obj) 判断对象是否可调用
+'函数'
+		1.内键函数(BIF)
+			>>> type(dir) <type 'builtin_function_or_method'>
+			属性: 可通过 dir(dir) 或 dir(type(dir)) 查看
+
+		2.用户自定义函数(UDF)
+			>>> type(bar) <type 'function'>
+			属性：可通过 dir(funcname) 或 dir(type(funcname)) 查看
+				  自带属性比BIF/BIM多，且可自定义属性
+			__doc__     # 函数文档，函数里紧跟在函数声明后的字符串
+			__name__    # 函数名 或 func_name
+			__module__  # 函数所在模块
+			__class__   # 函数类型  == type(func)
+			func_closure# 若函数为闭包函数则该属性为cell元组，否则为None
+						# 以自由变量的引用的单元对象(cell)为元素构成的元组
+						# cell对象，其属性cell_contents 为自由变量的值
+			func_code	# 字节编译的代码对象
+			func_defualts	# 默认的参数元组
+							# >>> def func(x=20, y=10): y =-x
+							# >>> func.func_defaults	(20, 10)
+			func_globals # 全局名字空间字典， 等同于在函数内调用globals()
+			func_dict	# 自定义属性名字空间字典，类似实例的.dict
+			func_doc	# == __doc__
+			func_name	# == __name__		
+			函数即其引用共享所有属性
+		
+		3. lambda 表达式
+			>>>type(lambda x:x)		<type 'function'>
+			属性: 除了没有命名，其含有与UDF相同的属性
+			其中函数名属性为：
+				>>> (lambda:1).__name__		'<lambda>'
+			
+			
+'方法'
+		1.内键方法(BIM)
+			python内键类型BIT 带有的方法
+			方法由对象以句点方式调用
+			>>> type([].append) <type 'builtin_function_or_method'>
+			属性: 同BIF， 可通过 dir([].append) 或 dir(type([].append)) 查看
+			其中BIM.__self__为 对象， BIF.__self__为 None
+		
+		2.用户自定义方法(UDM)
+			自定义类的方法 <type 'instancemethod'>
+			所有的UDM都是实例方法(包括类方法，不包括静态方法)
+
+'类'
+		类() -> 类.__init__() -> instance
+
+'类的实例'
+		通过实现类属性__call__() 来使实例可调用
+		instance() -> instance.__call__()
+
+----------------------------------------------------------------
+'代码对象 code-obj'
+		执行代码时，由python将代码转换成的字节码
+		任意可调用物(模块，函数，实例等)的底层都是一个代码对象
+			udf.func_code
+			udm.im_func.func_code
+			函数是代码对象的封装， 方法则是函数对象的封装

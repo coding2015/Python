@@ -32,6 +32,8 @@ chapter 11:
 		__module__	# 函数所在模块
 		__class__	# 函数类型  == type(func)
 		func_closure# 函数独有属性，若函数为闭包函数则该属性为cell元组，否则为None
+		...			# 更多自带属性可用dir(funcname)查看
+	
 		xxxx		# 自定义属性，只能在函数外定义
 
 		属性访问：
