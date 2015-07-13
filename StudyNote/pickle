@@ -1,6 +1,12 @@
 #!/usr/bin/python
 
 'pickle module'
+	转换存储Python对象，使之存储传输方便, 称之:扁平化/序列化/顺序化数据
+	增强版本 cPickle module
+	相关模块: marshal
+
+'应用'
+	把python对象直接保存到文件，而不需要转换为字符串
 
 # 读文件
 f = open('xxx','r')
@@ -9,9 +15,6 @@ pickle.load(f) -> data; # exception: UnpicklingError
 # 写文件
 f = open('xxx', 'w')
 pickle.dump(data, f)	# exception: PicklingError
-
-Question:
-	读写文件为何不用 file 自身方法， 而要调用pickle模块方法
 
 
 Reference:

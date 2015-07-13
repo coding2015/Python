@@ -71,8 +71,8 @@ chapter 11:
 			xxx.func_closure -> tuple of cells
 						# 闭包的每一个自由变量对应一个cell
 						# 变量内容对应cell的cell_contents属性 
-                应用：
-                        回调：返回闭包后直接调用闭包
+        应用：
+            回调：返回闭包后调用闭包
 
 ----------------------------------------------------
 'Decorator(装饰器)'
@@ -99,8 +99,13 @@ chapter 11:
 			def func(args):pass
 			-> func = deco(deco-args)(deco2(func))
 
-		系统的装饰器： staticmethod, classmethod, etc.
-		参考: https://www.python.org/dev/peps/pep-0318/ 
+		应用：
+			在描述符中定义并返回闭包，使得每个被装饰的对象转变为闭包
+			这样每个对象都有其特定的数据(自由变量)，eg: 单例模式
+
+		more:
+			系统的装饰器： staticmethod, classmethod, etc.
+			参考: https://www.python.org/dev/peps/pep-0318/ 
 
 -----------------------------------------------------	
 'generator 生成器'

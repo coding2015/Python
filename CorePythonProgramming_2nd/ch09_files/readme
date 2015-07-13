@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+chapter 9:
+	Files and Input/Output
+
+
+----------------------------------------------------
+'永久存储模块'
+'pickle, marshal'
+		转换存储Python对象，使之存储传输方便，称之:扁平化/序列化/顺序化数据
+		增强版本 cPickle module
+
+'DBM风格模块'
+		dbhash/bsddb, dbm, gdbm, dumbdm
+		以上模块管理器: anybm
+		永久性存储字符串，但不能对Python对象进行序列化
+
+'shelve 模块'
+		兼具以上两种模块功能
+		最接近永久性存储
+		

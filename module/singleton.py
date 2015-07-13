@@ -2,35 +2,36 @@
 #coding:utf-8
 
 '''
-singleton:
-	单例模式：
-		限制某类只能产生一个实例
+通过闭包描述符实现单例模式
 
+单例模式：
+		限制某类只能产生一个实例
+		
 KeyPoint:
-	decorator
+	decorator, closure, shallow-copy(浅拷贝)
 '''
 
 def singleton(cls):
-	'''
-	preserve only one class type,
-	and return only one class instance.
-	'''
+
 	instances = {}
 	def getinstance():
 		if cls not in instances:
 			instances[cls] = cls()
-			print 'instance:', instances
+			# print 'instance:', instances
 		return instances[cls]
 	
+#	cells = getinstance.func_closure
+#	print 'cells:', cells
+#	if cells:
+#		for e in cells:
+#			print '\tcontents:',e.cell_contents
+
 	return getinstance
 
 
-@singleton
-class A:
-	pass
 
-@singleton
-class B:
+@singleton		# -> A = singleton(A), 此时的A已经是singleton的闭包函数getinstance
+class A:		# 之后的A() 实际为携带了自由变量的getinstance()
 	pass
 
 class C:
@@ -41,24 +42,23 @@ class C:
 test data:
 
 >>> reload(sl)
+cells: (<cell at 0x7f885e8bcec0: classobj object at 0x7f885e8bdf58>, <cell at 0x7f885e8dd0c0: dict object at 0x120cc80>)
+	contents: singleton.A
+	contents: {}
 <module 'singleton' from 'singleton.py'>
 >>> 
->>> a1 = sl.A()
+>>> a = sl.A()
+instance: {<class singleton.A at 0x7f885e8bdf58>: <singleton.A instance at 0x7f885e8d45a8>}
+>>> 
 >>> a2 = sl.A()
->>> a2 is a1
+>>> 
+>>> a2 is a
 True
 >>> 
->>> b1 = sl.B()
->>> b2 = sl.B()
->>> b2 is b1
-True
->>> 
->>> c1 = sl.C()
+>>> c = sl.C()
 >>> c2 = sl.C()
->>> c2 is c1
+>>> c is c2
 False
-
-
 
 '''
 

@@ -84,8 +84,19 @@ KeyPoints:
 				property(fget[, fset[, fdel[, doc]]]) -> property attribute
 
 		__metaclass__
-			新类属性，指定类模板(元类)
-
+			用来指定类模板(元类), 类中类，类为其元类的实例
+			在元类定义中：
+				元类建议继承(type)，否则需自定义__call__() 才能实例化类
+				class Meta(type):
+					def __init__(cls, name, bases, attrd):pass
+						# name:cls的类名, bases:cls的父类， attrd:cls的属性
+						# 可以在此限制cls的属性
+					def __call__(cls, args):pass
+						# 使cls可调用，即由此创建实例
+						# 在基类type的__call__中默认调用了cls.__init__
+						# 可以在此个性化实例，eg: 单例模式
+						# cls因该属性而可调用，类似实例因在类中定义__call__变得可调用
+			当指定了类的元类属性后，定义类结束时会调用对应元类的构造函数
 
 		隐藏属性：
 			'_'以单下划线打头
