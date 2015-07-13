@@ -4,7 +4,7 @@ python是解释型语言
 采用其他变量或可调用对象对变量赋值时，此时变量值已定
 不会再因之后其他变量或调用对象的改变而改变
 Default parameters are created only once(when difining), 
-hence they can't be changed whenever the function is invoked passing values to override them
+hence they can't be changed whenever the function is invoked without passing values to override them
 '''
 	y = 10
 	x = y
