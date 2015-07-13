@@ -23,7 +23,7 @@ hash(obj) -> integer (if hashable)
 len(iterable) -> item numbers of iterable obj
 max(seq) -> value
 min(seq) -> value
-sum(iterable) -> value
+sum(iterable, start=0) -> value
 any(iterable) -> bool	# 查看任意元素是否为真，若迭代器为空返回False
 all(iterable) -> bool	# 查看所有元素是否为真，若迭代器为空返回True
 enumerate(iterable, count=0) -> enumerate-obj
