@@ -71,6 +71,8 @@ chapter 11:
 			xxx.func_closure -> tuple of cells
 						# 闭包的每一个自由变量对应一个cell
 						# 变量内容对应cell的cell_contents属性 
+                应用：
+                        回调：返回闭包后直接调用闭包
 
 ----------------------------------------------------
 'Decorator(装饰器)'
