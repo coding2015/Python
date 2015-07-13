@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+
+>>> compile('print "hello world"', '', 'single')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object is not callable
+
+
+原因;
+	compile 被覆盖
+	>>> compile			
+	'car'		# 怪异的是何时被赋予该值的不可知
+	
+解决:
+	del compile

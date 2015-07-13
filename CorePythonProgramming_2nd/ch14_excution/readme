@@ -3,6 +3,20 @@
 chapter 14
 		Execution Environment
 
+--------------------------------------------------
+'基本概念'
+'字节码(bytecode)'
+		类似汇编指令的中间语言， 但是一个字节码指令并不对应一个机器指令
+		(汇编指令的助记符与机器码一一对应)
+		python的代码对象
+
+'汇编'
+		将字节码(汇编码)转换为目标代码(机器码)
+
+'反汇编'
+		将目标代码转换为字节码(汇编码)
+		dis-module, dis.dis(code)-> bytecode
+
 ---------------------------------------------------
 '可调用对象'
 		可通过函数操作符'()'调用的对象
@@ -67,3 +81,16 @@ chapter 14
 			udf.func_code
 			udm.im_func.func_code
 			函数是代码对象的封装， 方法则是函数对象的封装
+
+----------------------------------------------------------------
+'相关内键函数'
+		callable(obj) -> bool	# 判断对象是否可调用
+		compile(source-str, filename, mode[, flags[, dont_inherit]]) -> code-obj
+				# filename 一般用不着，可置为''或'<string>'
+				# mode: 'eval', 'exec', 'single', 分别适配给eval(), exec()
+		eval(str/code-obj, globals = globals(), locals=locals()) -> value
+				# 对str/code-obj求值， str或code-obj 为一个表达式
+		exec obj	# 执行obj, obj为: 代码对象 或 字符串 或 打开的文件对象
+					# 可以执行单一的语句或语句的集合
+		input(promt='')	 # == eval(raw_input(promt='')), 返回输入对象本身
+						# 而raw_input()返回的是字符串

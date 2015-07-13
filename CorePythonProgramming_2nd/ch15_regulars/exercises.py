@@ -65,3 +65,43 @@ Exercises from chapter-15
 		>>> re.match('[\d.]*\+?[\d.]+j', '1.0+23.45j').group()
 		'1.0+23.45j'
 		'''
+
+15-13 提取type结果中的类型值
+		data: >>> repr(type(1)) "<type 'int'>"
+		patt = r'<type\s+[\'\"](.+)[\'\"]>'	# [\'\"], 宽松匹配 
+		>>> def whatType(obj):
+		...     typestr = str(type(obj))
+		...     patt = r'<type\s+[\'\"](.+)[\'\"]>'
+		...     m = re.match(patt, typestr)
+		...     if m is not None: 
+		...             return m.group(1)
+		... 
+		>>> whatType(1)
+		'int'
+		>>> whatType(2.3)
+		'float'
+		>>> whatType([])
+		'list'
+		>>> whatType(dir)
+		'builtin_function_or_method'
+
+15-14 匹配月份1-12
+		可能存在月份(数字)形式： 7，07, 2015-07, 2015/07
+		patt = r'\b(0?[1-9]|1[0-2])\b'  # 0?[1-9]匹配1-9， 1[0-2]匹配10-12
+		'''
+		>>> re.search(r'\b(0?[1-9]|1[0-2])\b', '07').group()
+		'07'
+		>>> re.search(r'\b(0?[1-9]|1[0-2])\b', '7').group()
+		'7'
+		>>> re.search(r'\b(0?[1-9]|1[0-2])\b', '12').group()
+		'12'
+		>>> re.search(r'\b(0?[1-9]|1[0-2])\b', '13').group()
+		Traceback (most recent call last):
+		  File "<stdin>", line 1, in <module>
+		AttributeError: 'NoneType' object has no attribute 'group'
+		>>> re.search(r'\b(0?[1-9]|1[0-2])\b', '2015-07-13').group()
+		'07'
+		>>> re.search(r'\b(0?[1-9]|1[0-2])\b', '2015/07/13').group()
+		'07'
+		'''
+				 
