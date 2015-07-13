@@ -136,8 +136,8 @@ Question:
 		>>> re.search('(a)\w+(c)', 'chadec').group()
 		'adec'
 		'''
-	sub(pattern, repl, string, flag=0) -> new-str  # 搜索并替换，repl:str/callable
-	sub(pattern, repl, string, flag=0) -> (new-str, num) # 返回元组，num为替换次数
+	sub(pattern, repl, string, count=0, flag=0) -> new-str  # 搜索并替换，repl:str/callable
+	sub(pattern, repl, string, count=0, flag=0) -> (new-str, num) # 返回元组，num为替换次数
 		'''
 		>>> re.sub('[ae]', 'X', 'acdefa')
 		'XcdXfX'
