@@ -9,7 +9,9 @@ random() -> random float-number in [0, 1)
 randint(a, b) -> random integer in range(a, b), including end point
 randrange(start, stop=None, step=1) -> randint(start, stop) not including end point
 					# stop=None时， randrange(num) -> randrange(0, num)
-choice(seq) -> random element in seq
+choice(seq) -> random element in seq  # 只对序列有效，不能作用于字典和集合
+					# 否则报错TypeError: 'set' object does not support indexing
+
 
 
 

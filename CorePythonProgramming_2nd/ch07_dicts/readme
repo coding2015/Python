@@ -1,0 +1,60 @@
+#!/usr/bin/python
+
+chapter 7:
+	Mapping and Set Types
+		Mapping-Type: dict
+		Set-Type: set, frozenset
+		无序排列存储，可迭代
+
+'字典与集合的共同方法'
+D.copy() ->  a shallow copy of D
+		# 注意， 此处返回的并不是D的引用，与 D2 = D 不一样
+		# 此处的浅拷贝指的是，对D中的可变对象(元素)进行浅拷贝
+
+字典或集合间比较：
+		因为字典与集合本身即无序排列
+		故比较过程与元素的顺序无关
+		对于字典，只要键值对都一样，则两个字典相等
+
+-----------------------------------------------------------
+'集合'
+		集合类型，{}. 集合为一组无序排列的可哈希的值, 各元素唯一
+		不能像序列一样用切片操作，也不能跟字典一样通过键访问元素
+	
+'set/frozenset type'
+		set; 可变集合， 不可哈希
+			创建：{...} 或 set(list/tuple/str/set/frozenset) 
+		frozenset: 不可变集合，可哈希
+			创建: frozenset(list/tuple/str/set/frozenset) 
+		
+		由于 set/frozenset 中都为可哈希元素(即不可变对象)
+		故拷贝方法效果等同于工厂方法，即 set(s) == s.copy()  
+		且copy()效率比工厂方法赋值对象快
+		故创建副本时使用copy()方法而不需担心浅拷贝问题
+
+		'''
+		>>> {(1,2),2}
+		set([(1, 2), 2])
+		>>> set()
+		set([])
+		>>> frozenset([2,3])
+		frozenset([2, 3])
+		'''
+
+'set methods'
+discard(obj) -> None  # 如果obj是集合的元素就从该集合中删除，否则什么都不做
+remove(obj) -> None	  # 从集合中删除obj, obj必须是集合的元素，否则报错:KeyError
+pop() -> obj	# 随机从集合中删除一个元素并返回该元素值，若集合为空报错:KeyError
+clear() -> None	# 清空集合元素
+add(obj)		# 添加元素到集合中
+update(set/list/tuple/str) # 添加序列的各元素到集合中
+union(set/list/tuple/str) -> a union set of old-sets
+
+'frozenset methods'
+union(set/list/tuple/str) -> a union frozenset of old-sets
+
+
+'操作符'
+'比较操作'
+		== > >= < <=
+		比较的是集合的等价关系，与元素排序、集合类型无关

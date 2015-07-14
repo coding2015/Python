@@ -1,6 +1,8 @@
 #!/usr/bin/python
+
 '''
-Generate a list of a random number(1<N<=100) of random numbers(0<=n<=2^31-1).
+Exercise 5-17
+	Generate a list of a random number(1<N<=100) of random numbers(0<=n<=2^31-1).
 Then randomly select a set of these numbers(1<=N<=100),sort them and display.
 '''
 

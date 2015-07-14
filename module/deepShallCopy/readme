@@ -1,6 +1,52 @@
 #!/usr/bin/python
 
+'difficulties'
+'deep copy' 
+		存在的问题待消化理解
+	'''
+    - A deep copy constructs a new compound object and then, recursively,
+      inserts *copies* into it of the objects found in the original.
+    
+    Two problems often exist with deep copy operations that don't exist
+    with shallow copy operations:
+    
+     a) recursive objects (compound objects that, directly or indirectly,
+        contain a reference to themselves) may cause a recursive loop
+    
+     b) because deep copy copies *everything* it may copy too much, e.g.
+        administrative data structures that should be shared even between
+        copies
+	'''--from <copy-docs>
+	
+
+------------------------------------------------------------------
 '浅拷贝-深拷贝'
 		python 的赋值语句并不拷贝对象，而仅是创建对象的引用给目标
 		对于不可变对象，当对目标重新赋值时，目标指向新对象, 原对象的引用计数减一
 		对于可变对象(比如list,dict), 通过引用或目标改变元素时，改变的是同一对象
+
+-------------------------------------------------------------------
+'copy module'
+		Python 内建模块
+
+copy(obj) -> a shallow copy of obj # 注意返回的副本不是obj的引用
+					# 此处的浅拷贝指的是， 对obj中的可变元素进行浅拷贝
+					# 即副本的可变元素为obj中可变元素的引用
+				 # 若obj不存在可变元素, 则用拷贝方法或工厂方法复制原有对象效果一样 
+															# 但前者快得多
+deepcopy(obj) ->  a deep copy of obj # 副本的可变元素不再是obj可变元素的引用
+
+
+'''
+>>> d2 = copy.copy(d)
+>>> d3 = copy.deepcopy(d)
+>>> print 'id(d) :%s\nid(d2):%s\nid(d3):%s' % (id(d),id(d2),id(d3))
+id(d) :18872592
+id(d2):19020624
+id(d3):19151856
+>>> print "id(d['L']) :%s\nid(d2['L']):%s\nid(d3['L']):%s" % (id(d['L']),id(d2['L']),id(d3['L']))
+id(d['L']) :140223678596304
+id(d2['L']):140223678596304
+id(d3['L']):140223678617576
+
+'''
