@@ -1,31 +1,80 @@
-'Exercise 6-6 in core python programming 2nd'
-'implement strip'
+#coding:utf-8
+
+'''
+Exercise 6-6 
+	implement strip
+'''
 
 import string
-whiteSpaces = string.whitespace
+whitespace = string.whitespace
 
-def Strip(s):
+def strip(s):
 	''' 
     implement str's method:strip()
     idea: find the beg and end index which are not whitespace
 	'''
 	for beg in range(len(s)):
-		if s[beg] not in whiteSpaces:
+		if s[beg] not in whitespace:
 			break
-	for end,e in enumerate(s[::-1]):
-		if e not in whiteSpaces:
+	for end in range(len(s)-1, -1, -1):
+		if s[end] not in whitespace:
 			break
-	return s[beg:len(s)-end] #!!!
+	print '(beg, end)', (beg, end)
+	if beg == end:	# 当s=' '(一个空格时)， beg == end == 0
+		return ''
+	return s[beg:end+1] # ！注意，[beg:end] 不包括end
 
 
 def test_strip():
-	print Strip.__doc__
+	print strip.__doc__
 	s = raw_input('enter a string:\n> ')
-	print 'raw:(%r)[%d]' % (s,len(s))
-	print 'S:(%r)[%d]'% (Strip(s),len(Strip(s)))
-	print 's:(%r)[%d]'%  (s.strip(),len(s.strip()))
+	stripped = strip(s)
+	print 's:        ', `s`
+	print 'mystrip:  ', `stripped`
+	print 'str.strip:', `s.strip()`
 
 if __name__ == '__main__':
     test_strip()
 
 
+'''
+enter a string:
+>  
+(beg, end) (0, 0)
+s:         ' '
+mystrip:   ''
+str.strip: ''
+
+
+enter a string:
+> 		  
+(beg, end) (3, 0)
+s:         '\t\t  '
+mystrip:   ''
+str.strip: ''
+
+
+enter a string:
+> hello
+(beg, end) (0, 4)
+s:         'hello'
+mystrip:   'hello'
+str.strip: 'hello'
+
+
+enter a string:
+> 	 hello
+(beg, end) (2, 6)
+s:         '\t hello'
+mystrip:   'hello'
+str.strip: 'hello'
+
+
+enter a string:
+> hello		  
+(beg, end) (0, 4)
+s:         'hello\t\t  '
+mystrip:   'hello'
+str.strip: 'hello'
+
+'''
