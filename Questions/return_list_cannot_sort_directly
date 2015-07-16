@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+
+不能对返回的列表直接.sort()
+why??
+
+>>> d
+{34: 'er', 12: 'hello', 90: 'dd'}
+>>> type(d.keys())
+<type 'list'>
+>>> l = d.keys().sort()
+>>> print l		 # 无法通过上式得到一个排好序的列表
+None
+>>> ll = d.keys()
+>>> ll
+[34, 12, 90]
+>>> ll.sort()
+>>> ll
+[12, 34, 90]
+

@@ -1,0 +1,40 @@
+#!/usr/bin/python
+
+'''
+变量作用域: variables' scope
+
+规律：
+	只要是在当前域执行的语句，其产生的变量都归于该领域
+'''
+
+
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
+>>> 
+>>> for i in range(2): j = 10	# for-loop 产生了i, j的全局变量
+... 
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'i', 'j']
+>>>
+>>> for x in range(1):			# 内嵌for-loop 产生了x, y的全局变量
+...     for y in range(1): pass
+... 
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'i', 'j', 'x', 'y']
+>>> 
+>>> for jj in range(0):pass		# 由于loop 并未执行(无值赋给jj), 故未产生变量jj
+... 
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'i', 'j', 'x', 'y']
+>>> while True:					# 只产生了w, ff, ee
+...     w = 10
+...     if True: ff = 1
+...     else: ee = 1
+...     break
+... 
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'ff', 'i', 'j', 'w', 'x', 'y']
+
+
+
+
