@@ -7,3 +7,5 @@ selenium
   https://pypi.python.org/pypi/selenium
   mac环境下需切换root权限($ sudo -s)，普通用户无法安装（权限受限）
 MySQLdb
+  google: python mysqldb -> pypi mysql
+  https://pypi.python.org/pypi/MySQL-python
