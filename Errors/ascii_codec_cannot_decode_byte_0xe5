@@ -1,0 +1,25 @@
+'ascii' codec can't decode byte 0xe5 in position 502: ordinal not in range(128)
+编码转换问题
+
+
+eg:
+        s = 'databases write error!--%s'%(str(e))
+        wlog.logger.error(s)
+        
+>>> s = '其他'
+>>> s
+'\xc6\xe4\xcb\xfb'
+>>> s.decode('utf-8')
+
+Traceback (most recent call last):
+  File "<pyshell#23>", line 1, in <module>
+    s.decode('utf-8')
+  File "C:\Python27\lib\encodings\utf_8.py", line 16, in decode
+    return codecs.utf_8_decode(input, errors, True)
+UnicodeDecodeError: 'utf8' codec can't decode byte 0xc6 in position 0: invalid continuation byte
+>>> s.encode('utf-8')
+
+Traceback (most recent call last):
+  File "<pyshell#24>", line 1, in <module>
+    s.encode('utf-8')
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc6 in position 0: ordinal not in range(128)
