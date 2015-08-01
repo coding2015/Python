@@ -10,9 +10,12 @@ type(text) 只能判断文本是str还是unicode
     
     #eg: 获取文本编码
     chardet.detect(text)  # 注意： text必须是bytes(str), 如果是unicode需要编码转换为bytes即chardet.detect(text.encode('utf-8'))
+    # 输出：eg: {'confidence': 0.99, 'encoding': 'utf-8'}
     
     #eg: 获取网页编码
     import urllib
     rawdata = urllib.urlopen(url).read()
     print '=-=-= app page code =-=-=: ', chardet.detect(rawdata)
+    
+    
     
