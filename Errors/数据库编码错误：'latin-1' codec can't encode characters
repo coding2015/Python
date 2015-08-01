@@ -1,0 +1,8 @@
+往数据库添加数据异常:'latin-1' codec can't encode characters in position 44-53: ordinal not in range(256)
+
+原因：sql命令或写入数据库的数据带有unicode编码
+eg:
+  1.sql命令写成了unicode编码
+      sql = u'INSERT INTO %s %s VALUES %s ON DUPLICATE KEY UPDATE %s' % (dbname, fields, values, given) 
+    更正：去u
+  2.sql命令中的参数为unicode编码
