@@ -14,7 +14,7 @@ insert(index, obj)	#在index前添加obj, 若index<-len(list)/>len(list)-1 则�
 pop(index=-1)		#删除并返回索引元素，默认删除最后一个元素
 remove(obj)			#删除第一个obj, 若无obj报错ValueError
 reverse()			#翻转列表
-sort(cmp=None, key=None，reverse=False) #列表排序，默认升序
+sort(cmp=None, key=None，reverse=False) #列表排序，默认升序，大小写敏感； 忽略大小写：sort(key=lambda s: s.lower())
 
 注：
 所有以上操作改变的是原列表本身
