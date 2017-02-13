@@ -7,7 +7,7 @@ dict:
 
 	函数					功能
 clear() ->{}		#清空字典
-copy()	->dict		#浅拷贝字典
+copy()	->dict		#浅拷贝字典 
 fromkeys(seq, val=None) ->dict		#创建字典：抽取seq各元素为键，各键值默认为:None
 get(key, default=None) ->value		#若key存在返回d[key], 否则返回default, eg: dd.get('k2', -1)
 has_key(key) ->bool 	#若key存在返回True否则False, 作用同 in/not in
