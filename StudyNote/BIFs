@@ -85,6 +85,13 @@ delattr(obj, attr) == `del obj.attr`
 			round(n):四舍五入，取最接近n的整数（浮点数类型）
 					n>0时，四舍<n,五入>n
 					n<0时，四舍>n.五入<n
+			eg:
+				int(2.3) #2
+				int(-2.3) #-2
+				math.floor(2.3) #2.0
+				math.floor(-2.3) #-3.0
+				round(2.3) #2.0
+				round(-2.3) #-2.0
 	Problem:
 		边界值末位为5时，有时进位，有时舍位
 			>>> round(1.355, 2)
