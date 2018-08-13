@@ -1,0 +1,55 @@
+#!/usr/bin/python2.7
+
+'''
+https://docs.python.org/2/library/sets.html
+
+Sets:
+Unordered collections of unique elements
+
+Python built-in sets type:
+	1.set:  可变集合 
+	2.forzenset:  不可变集合
+	
+'''
+
+-------------------------------------------------------------------------------
+创建集合：
+set(iterable):
+	set(set)
+	set(frozenset)
+	set(list)
+	set(generator)
+	set(string)
+	set([12,3,...])
+	set({1,3,...})
+	set('gellx de')
+
+创建 frozenset 方法同上
+
+-------------------------------------------------------------------------------
+set & frozenset 操作符：
+
+len(s)    
+x in s
+x not in s
+s.issubset(t) -> bool 		# s <= t
+s.issuperset(t) -> bool     # s >= t
+s.union(t) -> 新的集合      # s | t, 并集
+s.intersection(t) -> 新的集合  # s & t, 交集
+s.difference(t) -> 新的集合  # s - t, 差集
+s.symmetric_difference(t) -> 新的集合  # s ^ t,  （s|t）- (s&t), 对称差集
+
+-------------------------------------------------------------------------------
+增删改操作符：
+s.update(t) 		   		 # s = s|t
+s.intersection_update(t)     # s = s&t
+s.difference_update(t) 		 # s = s - t
+s.symmetric_difference_update(t)  # s = s^t
+s.add(x) 	
+s.remove(x) -> None		#删除元素x，如果找不到就报错:keyError
+s.discard(x) -> None    #删除元素X，找不到也不报错
+s.pop() -> 被删除的元素 #删除任一集合中的元素，如果集合为空则报错：KeyError
+s.clear()  -> None      #清空集合
+
+
+
