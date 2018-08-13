@@ -41,7 +41,7 @@ s.symmetric_difference(t) -> 新的集合  	# s ^ t, （s|t）- (s&t), 对称差
 
 -------------------------------------------------------------------------------
 增删改操作符：
-s.update(t) 		   		 		# s = s|t
+s.update(t) 		   		 		# s = s|t 
 s.intersection_update(t)     		# s = s&t
 s.difference_update(t) 		 		# s = s - t
 s.symmetric_difference_update(t)  	# s = s^t
@@ -51,5 +51,6 @@ s.discard(x) -> None    #删除元素X，找不到也不报错
 s.pop() -> 被删除的元素 #删除任一集合中的元素，如果集合为空则报错：KeyError
 s.clear()  -> None      #清空集合
 
-
+-------------------------------------------------------------------------------
+注意：跟list不同，set不支持+操作
 
