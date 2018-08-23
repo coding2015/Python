@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+#coding:utf-8
+
+'''
+Queue（队列）：
+	- 入队（enqueue）
+	- 出队（dequeue）
+
+Python中创建队列的实现：
+	collections.deque()
+'''
+
+from collections import deque
+
+deque() -> deque obj	#创建队列
+len(deque) -> int		#队列元素个数
+deque.append(x)			#在队列右边添加元素x
+deque.appendleft(x)		#在队列左边添加元素x
+deque.clear()			#清空队列元素
+deque.count(x) -> int   #统计队列中x元素的个数，x若不存在则为0
+deque.extend(iterable)  #将可迭代的对象（字符串/列表/元祖/生成器/字典等）的元素逐个追加到队列右边
+deque.extendleft(iterable)  #将可迭代的对象（字符串/列表/元祖/生成器/字典等）的元素逐个追加到队列左边
+deque.pop()				#删除队列最右边的元素，如果队列为空报错：IndexError
+deque.popleft()			#删除队列最左边的元素，如果队列为空报错：IndexError
+deque.remove(x)			#从列表中删除第一个（左起）x, 如果找不到x报错：ValueError
+
