@@ -6,7 +6,7 @@ Queue（队列）：
 	- 入队（enqueue）
 	- 出队（dequeue）
 
-Python中创建队列的实现：
+Python中队列的实现：
 	collections.deque()
 '''
 
