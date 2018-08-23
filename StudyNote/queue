@@ -21,6 +21,8 @@ deque(iterable)         #创建队列，队列包含多个元素（元素个数�
 
 "队列方法"
 len(deque) -> int		#队列元素个数
+deque += iterable       #同deque.extend()
+
 deque.append(x)			#在队列右边添加元素x
 deque.appendleft(x)		#在队列左边添加元素x
 deque.clear()			#清空队列元素
