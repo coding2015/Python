@@ -17,6 +17,7 @@ from collections import deque
 deque() -> deque obj	#创建空队列
 deque(non-iterable)     #创建队列，队列包含一个元素（非迭代）
 deque(iterable)         #创建队列，队列包含多个元素（元素个数为迭代对象-字符串/列表/元祖/生成器/字典等的元素个数）
+deque([iterable])		#创建队列，将可迭代对象作为一个元素
 
 
 "队列方法"
