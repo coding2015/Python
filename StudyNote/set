@@ -15,16 +15,11 @@ Python built-in sets type:
 -------------------------------------------------------------------------------
 创建集合：
 set(iterable):
-	set(set)
-	set(frozenset)
-	set(list)
-	set(generator)
-	set(string)
-	set([12,3,...])
-	set({1,3,...})
-	set('gellx de')
+	set(list/tuple/string/generator/set/frozenset)
+	set(dict)     #只有字典的键名作为集合的元素
 
 创建 frozenset 方法同上
+注意：空集合的创建为set() 而不是 {} （{}为空字典，在Python中字典比集合优先）
 
 -------------------------------------------------------------------------------
 set & frozenset 操作符：
