@@ -17,6 +17,7 @@ expandtabs(size=8)		#设置tab字符处显示的空格个数
 find(sub, beg=0, end=len(str))	#返回字符串中sub的最低索引值，若不含sub返回-1
 * format(...)		#返回格式化的字符串
 index(sub, beg=0, end=len(str))		#同find, 但找不到时报错ValueError
+isalpha()	#检查字符串是否只包含字母
 isalnum()	#检查字符串是否只包含字母和数字
 isdigit()	#检查字符串是否只包含数字
 islower()	#检查字符串所有字母是否小写，若字符串中无字母返回False
